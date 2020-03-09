@@ -5,11 +5,11 @@
   >
     <div class="container flex justify-center mt-20">
       <div
-        class="w-full font-light flex flex-col sm:flex-row uppercase text-center text-lg sm:text-xl leading-tight md:text-left">
-          <div class="mb-4 md:mb-0 w-2/3">
+        class="w-full font-light flex uppercase text-lg sm:text-xl leading-tight md:text-left">
+          <div class="w-1/2 mb-4 md:mb-0 md:w-2/3">
             <a href="#" class="hover:text-pink" @click.prevent="scrollTop">Back to top</a>
           </div>
-          <div class="w-1/3">
+          <div class="w-1/2 md:w-1/3">
             <a href="https://instagram.com" class="hover:text-pink">Instagram</a>
           </div>
         </div>

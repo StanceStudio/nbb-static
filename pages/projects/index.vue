@@ -1,6 +1,6 @@
 <template>
     <div class="bg-green min-h-screen pt-26">
-      <Projects class="container" />
+      <Projects :projects="projects" class="container" />
       <Footer />
     </div>
 </template>
@@ -11,6 +11,13 @@ import Projects from '~/components/Projects.vue';
 import Footer from '~/components/Footer';
 
 export default {
+  async asyncData({ app, store, params }) {
+    const { data } = await app.$axios.get(
+      `${process.env.WORDPRESS_API_URL}/wp/v2/projects?orderby=date&per_page=100&_embed`
+    );
+    return { projects: data };
+  },
+
   components: {
     Projects,
     Footer

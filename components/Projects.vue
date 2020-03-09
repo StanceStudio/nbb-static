@@ -1,11 +1,11 @@
 <template>
     <div>
-        <h2 class="mb-18 sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none inline-block overflow-hidden">
+        <h2 class="mb-10 xl:mb-18 text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none inline-block overflow-hidden">
             <div class="project-item flex items-center">Spaces <Colon style="width: 0.085em;" class="ml-2"/></div>
         </h2>
         <ul>
             <template 
-            v-for="project in $store.state.projects"
+            v-for="project in projects"
             >
             <li
             :key="project.id"
@@ -22,7 +22,7 @@
                     @mouseenter="projectMouseOver(project)">
                     <h2
                     v-html="project.title.rendered"
-                    class="sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase inline-block leading-none">
+                    class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase inline-block leading-none">
                     </h2>
                     <!-- <Underline class="line" /> -->
                     <div
@@ -69,7 +69,8 @@ export default {
   },
 
   props: {
-    exclude: Number
+    exclude: Number,
+    projects: Array
   },
 
   data() {
@@ -81,14 +82,14 @@ export default {
   },
 
   created() {      
-    this.fetchProjects();
+    //this.fetchProjects();
   },
 
   methods: {
     async fetchProjects() {
         if (!this.$store.state.projects) {
             let projects = await this.$axios.get(
-                `${process.env.wordpressAPIUrl}/wp/v2/projects?per_page=100`
+                `${process.env.WORDPRESS_API_URL}/wp/v2/projects?per_page=100`
             );
 
             this.$store.commit('setProjects', projects.data);

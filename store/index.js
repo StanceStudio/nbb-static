@@ -56,7 +56,7 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit({ commit }) {
-    let meta = await this.$axios.get(process.env.wordpressAPIUrl);
+    let meta = await this.$axios.get(process.env.WORDPRESS_API_URL);
     commit('setMeta', meta.data);
   }
 };

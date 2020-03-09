@@ -9,7 +9,11 @@ a {
 /** LAYOUT **/
 
 .container {
-  @apply w-10/12 ml-auto px-4;
+  @apply px-4;
+
+  @screen lg {
+    @apply w-10/12 ml-auto;
+  }
 
   @screen xl {
     @apply pr-6;

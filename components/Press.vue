@@ -1,6 +1,6 @@
 <template>
   <article
-    class="single pt-26"
+    class="single pt-16 xl:pt-26"
     :class="{ready : pageReady}"
 > 
     <div class="container">

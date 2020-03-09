@@ -1,9 +1,9 @@
 <template>
   <article
     class="single"> 
-    <div class="container pt-26">
-      <header class="mb-20">
-        <h3 v-if="type === 'project'" class="sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none inline-block overflow-hidden">
+    <div class="container pt-20 xl:pt-26">
+      <header class="mb-18 md:mb-20">
+        <h3 v-if="type === 'project'" class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none inline-block overflow-hidden">
           <div class="title-item flex items-center">Spaces <Colon style="width: 0.085em;" class="ml-2"/></div>
         </h3>
         <h1
@@ -11,12 +11,12 @@
           v-html="title"
         >
         </h1>
-        <h2 class="sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none inline-block overflow-hidden text-pink">
+        <h2 class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none inline-block overflow-hidden text-pink">
           <div class="title-item" v-if="data.acf.heading" v-html="data.acf.heading"></div>
         </h2>
       </header>
       <div class="overflow-hidden mb-14">
-        <div class="title-item text-lg font-light w-1/2" v-html="data.acf.introduction"></div>
+        <div class="title-item text-lg font-light md:w-1/2" v-html="data.acf.introduction"></div>
       </div>
       <div class="overflow-hidden">
         <transition name="fade">
@@ -74,7 +74,7 @@
       </div>
       
       <Underline class="w-full"/>
-      <Projects v-if="data.type === 'project'" :exclude="data.id" class="pt-20"/>
+      <Projects v-if="data.type === 'project'" :projects="$store.state.projects" :exclude="data.id" class="pt-20"/>
       <FooterNavigation v-else class="pt-20" />
     </div>
     <Footer />
@@ -136,6 +136,8 @@ export default {
     
     this.$nextTick(this.addListeners);
 
+    this.fetchProjects();
+
     // move this to a heading component
     if (process.browser) {
       require('~/assets/js/SplitTextPlugin.js');
@@ -160,6 +162,16 @@ export default {
   },
 
   methods: {
+    async fetchProjects() {
+        if (!this.$store.state.projects) {
+            let projects = await this.$axios.get(
+                `${process.env.WORDPRESS_API_URL}/wp/v2/projects?per_page=100`
+            );
+
+            this.$store.commit('setProjects', projects.data);
+        }
+    },
+
     addListeners () {
       this._links = this.$el.getElementsByTagName('a')
       for (let i = 0; i < this._links.length; i++) {

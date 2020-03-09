@@ -71,14 +71,14 @@ export default {
     },
   },
 
-  env: {
-    wordpressAPIUrl: process.env.NODE_ENV === 'production' ? 'https://nbb-api.stance.design/wp-json' : 'http://nbb.local/wp-json',
-    wordpressUrl: process.env.NODE_ENV === 'production' ? 'https://nbb-api.stance.design' : 'http://nbb.local',
-  },
+  // env: {
+  //   wordpressAPIUrl: process.env.NODE_ENV === 'production' ? 'https://nbb-api.stance.design/wp-json' : 'http://nbb.local/wp-json',
+  //   wordpressUrl: process.env.NODE_ENV === 'production' ? 'https://nbb-api.stance.design' : 'http://nbb.local',
+  // },
 
   sitemap: {
     hostname: 'https://nbb-api.stance.design'
-  }
+  },
 
   // sitemap: {
   //   hostname: process.env.wordpressUrl,
@@ -110,4 +110,49 @@ export default {
   //     },
   //   ]
   // },
+
+  generate: {
+    async routes() {
+      let posts = await axios
+        .get(process.env.WORDPRESS_API_URL + '/wp/v2/posts', {
+          params: { orderby: 'date', per_page: 100, _embed: null }
+        })
+        .then(res => {          
+          return res.data.map(post => {
+            return {
+              route: '/update/' + post.slug,
+              payload: post
+            };
+          });
+        });
+      let pages = await axios
+        .get(process.env.WORDPRESS_API_URL + '/wp/v2/pages', {
+          params: { orderby: 'date', per_page: 100, _embed: null }
+        })
+        .then(res => {
+          return res.data.map(page => {
+            return {
+              route: '/' + page.slug,
+              payload: page
+            };
+          });
+        });
+      let projects = await axios
+        .get(process.env.WORDPRESS_API_URL + '/wp/v2/projects', {
+          params: { orderby: 'date', per_page: 100, _embed: null }
+        })
+        .then(res => {
+          return res.data.map(project => {
+            return {
+              route: '/projects/' + project.slug,
+              payload: project
+            };
+          });
+        });
+      return Promise.all([posts, pages, projects]).then(values => {
+        return [...values[0], ...values[1], ...values[2]];
+      });
+    }
+  }
 };
+

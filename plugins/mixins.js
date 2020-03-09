@@ -32,7 +32,7 @@ Vue.mixin({
      * 
      */
     filterPostContent(content) {
-      return content.replace(process.env.wordpressUrl,'');
+      return content.replace(process.env.WORDPRESS_URL,'');
     }
   }
 });
