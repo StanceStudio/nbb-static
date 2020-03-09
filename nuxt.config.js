@@ -76,36 +76,36 @@ export default {
     wordpressUrl: process.env.NODE_ENV === 'production' ? 'https://nbb-api.stance.design' : 'http://nbb.local',
   },
 
-  sitemap: {
-    hostname: process.env.wordpressUrl,
-    path: '/sitemap.xml',
-    sitemaps: [
-      {
-        path: '/sitemap-articles.xml',
-        routes: async () => {
-          const { data } = await axios.get(process.env.wordpressAPIUrl + '/wp/v2/posts', {
-            params: { orderby: 'date', per_page: 1000000 }
-          });
-          return data.map(article => ({
-            url: `/${article.slug}`,
-            lastmod: article.modified
-          }));
-        }
-      },
-      {
-        path: '/sitemap-pages.xml',
-        routes: async () => {
-          const { data } = await axios.get(process.env.wordpressAPIUrl + '/wp/v2/pages', {
-            params: { orderby: 'date', per_page: 1000000 }
-          });
-          return data.map(page => ({
-            url: `/${page.slug}`,
-            lastmod: page.modified
-          }));
-        }
-      },
-    ]
-  },
+  // sitemap: {
+  //   hostname: process.env.wordpressUrl,
+  //   path: '/sitemap.xml',
+  //   sitemaps: [
+  //     {
+  //       path: '/sitemap-articles.xml',
+  //       routes: async () => {
+  //         const { data } = await axios.get(process.env.wordpressAPIUrl + '/wp/v2/posts', {
+  //           params: { orderby: 'date', per_page: 1000000 }
+  //         });
+  //         return data.map(article => ({
+  //           url: `/${article.slug}`,
+  //           lastmod: article.modified
+  //         }));
+  //       }
+  //     },
+  //     {
+  //       path: '/sitemap-pages.xml',
+  //       routes: async () => {
+  //         const { data } = await axios.get(process.env.wordpressAPIUrl + '/wp/v2/pages', {
+  //           params: { orderby: 'date', per_page: 1000000 }
+  //         });
+  //         return data.map(page => ({
+  //           url: `/${page.slug}`,
+  //           lastmod: page.modified
+  //         }));
+  //       }
+  //     },
+  //   ]
+  // },
 
   generate: {
   }
