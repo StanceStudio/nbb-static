@@ -76,6 +76,10 @@ export default {
     wordpressUrl: process.env.NODE_ENV === 'production' ? 'https://nbb-api.stance.design' : 'http://nbb.local',
   },
 
+  sitemap: {
+    hostname: 'https://nbb-api.stance.design'
+  }
+
   // sitemap: {
   //   hostname: process.env.wordpressUrl,
   //   path: '/sitemap.xml',
@@ -106,7 +110,4 @@ export default {
   //     },
   //   ]
   // },
-
-  generate: {
-  }
 };
