@@ -35,6 +35,6 @@ export default class NavigationItem {
      * @return  {String}
      */
     get link () {      
-        return this[_fields].url.replace(process.env.WORDPRESS_URL,'');
+        return this[_fields].url.replace(process.env.wordpressUrl,'');
     }
 };

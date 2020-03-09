@@ -71,14 +71,19 @@ export default {
     },
   },
 
+  env: {
+    wordpressAPIUrl: process.env.NODE_ENV === 'production' ? 'https://nbb-api.stance.design/wp-json' : 'http://nbb.local/wp-json',
+    wordpressUrl: process.env.NODE_ENV === 'production' ? 'https://nbb-api.stance.design' : 'http://nbb.local',
+  },
+
   sitemap: {
-    hostname: process.env.WORDPRESS_URL,
+    hostname: process.env.wordpressUrl,
     path: '/sitemap.xml',
     sitemaps: [
       {
         path: '/sitemap-articles.xml',
         routes: async () => {
-          const { data } = await axios.get(process.env.WORDPRESS_API_URL + '/wp/v2/posts', {
+          const { data } = await axios.get(process.env.wordpressAPIUrl + '/wp/v2/posts', {
             params: { orderby: 'date', per_page: 1000000 }
           });
           return data.map(article => ({
@@ -90,7 +95,7 @@ export default {
       {
         path: '/sitemap-pages.xml',
         routes: async () => {
-          const { data } = await axios.get(process.env.WORDPRESS_API_URL + '/wp/v2/pages', {
+          const { data } = await axios.get(process.env.wordpressAPIUrl + '/wp/v2/pages', {
             params: { orderby: 'date', per_page: 1000000 }
           });
           return data.map(page => ({
