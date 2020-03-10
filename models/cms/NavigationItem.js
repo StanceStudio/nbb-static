@@ -34,7 +34,7 @@ export default class NavigationItem {
      *
      * @return  {String}
      */
-    get link () {      
-        return this[_fields].url.replace(process.env.WORDPRESS_URL,'');
+    get link () {            
+        return this[_fields].slug;
     }
 };

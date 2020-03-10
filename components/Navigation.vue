@@ -13,7 +13,8 @@
         >
           <NuxtLink
             exact
-            :to="item.link === 'home' ? '/' : `${item.link}`"
+            :to="item.link === 'home' ? '/' : `/${item.link}`"
+            @click.native="showNav = false"
           >
             {{ item.title }}
           </NuxtLink>
@@ -47,7 +48,7 @@ export default {
             { data: navigation },
         ] = await Promise.all([
             import('~/models/cms/NavigationItem'),
-            this.$axios.get(`${process.env.WORDPRESS_API_URL}/menus/v1/locations/main-nav`),
+            this.$axios.get(`${process.env.wordpressAPIUrl}/menus/v1/locations/main-nav`),
         ]);        
 
         this.menuItems = navigation.items.map(item => new NavigationItem(item));

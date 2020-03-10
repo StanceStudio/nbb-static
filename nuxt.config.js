@@ -71,14 +71,9 @@ export default {
     },
   },
 
-  // env: {
-  //   wordpressAPIUrl: process.env.NODE_ENV === 'production' ? 'https://nbb-api.stance.design/wp-json' : 'http://nbb.local/wp-json',
-  //   wordpressUrl: process.env.NODE_ENV === 'production' ? 'https://nbb-api.stance.design' : 'http://nbb.local',
-  // },
-
   env: {
-    WORDPRESS_API_URL: process.env.WORDPRESS_API_URL,
-    WORDPRESS_URL: process.env.WORDPRESS_URL
+    wordpressAPIUrl: process.env.NODE_ENV === 'production' ? 'https://nbb-api.stance.design/wp-json' : 'https://nbb.local/wp-json',
+    wordpressUrl: process.env.NODE_ENV === 'production' ? 'https://nbb-api.stance.design' : 'https://nbb.local',
   },
 
   sitemap: {
@@ -119,7 +114,7 @@ export default {
   generate: {
     async routes() {
       let posts = await axios
-        .get(process.env.WORDPRESS_API_URL + '/wp/v2/posts', {
+        .get(process.env.wordpressAPIUrl + '/wp/v2/posts', {
           params: { orderby: 'date', per_page: 100, _embed: null }
         })
         .then(res => {          
@@ -131,7 +126,7 @@ export default {
           });
         });
       let pages = await axios
-        .get(process.env.WORDPRESS_API_URL + '/wp/v2/pages', {
+        .get(process.env.wordpressAPIUrl + '/wp/v2/pages', {
           params: { orderby: 'date', per_page: 100, _embed: null }
         })
         .then(res => {
@@ -143,7 +138,7 @@ export default {
           });
         });
       let projects = await axios
-        .get(process.env.WORDPRESS_API_URL + '/wp/v2/projects', {
+        .get(process.env.wordpressAPIUrl + '/wp/v2/projects', {
           params: { orderby: 'date', per_page: 100, _embed: null }
         })
         .then(res => {
