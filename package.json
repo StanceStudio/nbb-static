@@ -10,7 +10,6 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "format": "prettier --write '**/*.{css,js,json,md,vue,php}'",
-    "postinstall": "node scripts/postinstall.js"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.9.3",
