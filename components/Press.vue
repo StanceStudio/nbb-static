@@ -1,31 +1,30 @@
 <template>
   <article
-    class="single pt-16 xl:pt-26"
-    :class="{ready : pageReady}"
-> 
+    class="single pt-20 xl:pt-26"
+    :class="{ready : pageReady}"> 
     <div class="container">
-      <header class="mb-20">
+      <header class="mb-18 md:mb-20">
         <h1
           class="title text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-tight"
-          v-html="title"
-        >
+          v-html="title">
         </h1>
       </header>
+
       <ul class="min-h-screen">
         <li
           v-for="(section, i) in data.acf.content"
           :key="'section-' + i"
           :data-type="section.acf_fc_layout"
-          class="py-4">
+          class="py-1 xl:py-4">
           <div
             class="inline-block"
             @mousemove="moveImages"
             @mouseleave="displayImages = false"
             @mouseenter="projectMouseOver(section)">
             <a v-if="section.link" :href="section.link" rel="nofollow" target="_blank">
-              <div class="title sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-none" v-html="section.title"></div>
+              <div class="title text-xl sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-none" v-html="section.title"></div>
             </a>
-            <div v-else class="title inline-block sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-none" v-html="section.title"></div>
+            <div v-else class="title inline-block text-xl sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-none" v-html="section.title"></div>
           </div>
         </li>
       </ul>
@@ -34,7 +33,7 @@
           <div
             v-show="displayImages"
             ref="images"
-            class="hot-images fixed z-50 pointer-events-none">
+            class="hidden xl:block hot-images fixed z-50 pointer-events-none">
             <div
               v-if="heading"
               class="uppercase mb-3 text-pink text-lg xxl:text-xl"
@@ -108,7 +107,7 @@ export default {
       });
 
       let tl = new TimelineMax();
-      tl.staggerFrom('.title-item', .6 , { y: '110%', delay: .6, ease: "power3.out"}, .1 );
+      tl.staggerTo('.title-item', .6 , { y: 0, delay: .6, ease: "power3.out"}, .1 );
     }
   },
 
@@ -142,29 +141,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-  .single {
-    @apply flex flex-col relative min-h-screen;
-  }
-
-  .small_large {
-    > div:first-child {
-      @apply w-1/3 pr-10
-    }
-
-    > div:nth-child(2) {
-      @apply w-2/3
-    }
-  }
-
-  .large_small {
-    > div:first-child {
-      @apply w-2/3
-    }
-
-    > div:nth-child(2) {
-      @apply w-1/3 pl-10
-    }
-  }
-</style>

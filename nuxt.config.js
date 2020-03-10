@@ -114,7 +114,7 @@ export default {
   generate: {
     async routes() {
       let posts = await axios
-        .get(process.env.wordpressAPIUrl + '/wp/v2/posts', {
+        .get('https://nbb-api.stance.design/wp-json/wp/v2/posts', {
           params: { orderby: 'date', per_page: 100, _embed: null }
         })
         .then(res => {          
@@ -126,7 +126,7 @@ export default {
           });
         });
       let pages = await axios
-        .get(process.env.wordpressAPIUrl + '/wp/v2/pages', {
+        .get('https://nbb-api.stance.design/wp-json/wp/v2/pages', {
           params: { orderby: 'date', per_page: 100, _embed: null }
         })
         .then(res => {
@@ -138,7 +138,7 @@ export default {
           });
         });
       let projects = await axios
-        .get(process.env.wordpressAPIUrl + '/wp/v2/projects', {
+        .get('https://nbb-api.stance.design/wp-json/wp/v2/projects', {
           params: { orderby: 'date', per_page: 100, _embed: null }
         })
         .then(res => {

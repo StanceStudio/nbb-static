@@ -11,12 +11,8 @@ a {
 .container {
   @apply px-4;
 
-  @screen lg {
-    @apply w-10/12 ml-auto;
-  }
-
   @screen xl {
-    @apply pr-6;
+    @apply w-10/12 ml-auto pr-6;
   }
 
   @screen xxl {
@@ -27,6 +23,10 @@ a {
 .wysiwyg {
   a {
     @apply text-pink;
+  }
+
+  p {
+    @apply mb-4;
   }
 }
 
@@ -109,7 +109,7 @@ a {
 
 .fade-in {
   opacity: 0;
-  transition: opacity .2s linear;
+  transition: opacity .3s cubic-bezier(.13,.74,.5,.97);
 }
 
 .fade-in.show {
@@ -118,7 +118,7 @@ a {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .2s;
+  transition: opacity .3s cubic-bezier(.13,.74,.5,.97);
 }
 
 .fade-enter,
@@ -127,14 +127,14 @@ a {
 }
 
 .lazy {
-  background-color: #fff;
-  position: relative;
+  @apply relative;
+  /* background-color: #fff; */
 
   img {
     backface-visibility: hidden;
     height: 100%;
     opacity: 0;
-    transition: opacity 0.5s;
+    transition: opacity 0.5s cubic-bezier(.13,.74,.5,.97);
     width: 100%;
   }
 

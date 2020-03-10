@@ -1,8 +1,8 @@
 <template>
   <article
-    class="single"> 
-    <div class="container pt-20 xl:pt-26">
-      <header class="mb-18 md:mb-20">
+    class="single pt-20 xl:pt-26"> 
+    <div class="container">
+      <header class="mb-10 md:mb-20">
         <h3 v-if="type === 'project'" class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none inline-block overflow-hidden">
           <div class="title-item flex items-center">Spaces <Colon style="width: 0.085em;" class="ml-2"/></div>
         </h3>
@@ -11,65 +11,21 @@
           v-html="title"
         >
         </h1>
-        <h2 class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none inline-block overflow-hidden text-pink">
-          <div class="title-item" v-if="data.acf.heading" v-html="data.acf.heading"></div>
+        <h2
+          v-if="data.acf.heading"
+          class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none inline-block overflow-hidden text-pink">
+          <div class="title-item" v-html="data.acf.heading"></div>
         </h2>
       </header>
-      <div class="overflow-hidden mb-14">
+      <div
+        v-if="data.acf.introduction"
+        class="overflow-hidden mb-14">
         <div class="title-item text-lg font-light md:w-1/2" v-html="data.acf.introduction"></div>
       </div>
-      <div class="overflow-hidden">
+
+      <div class="content min-h-screen pb-20">
         <transition name="fade">
-          <div class="content title-item pb-20">
-            <section
-              v-for="(section, i) in data.acf.content"
-              :key="'section-' + i"
-              :data-type="section.acf_fc_layout"
-              class="py-14">
-
-              <div v-if="'text' === section.acf_fc_layout" class="title-item text-lg font-light w-1/2">
-                <div
-                  v-if="section.heading"
-                  class="flex items-baseline mb-2">
-                  <PinkDiamond style="width: 0.5em;" class="mr-1" />
-                  <h3 v-html="section.heading" class="uppercase"></h3>
-                </div>
-                <div v-html="filterPostContent(section.text)" class="wysiwyg"></div>
-              </div>
-
-              <div v-if="'image' === section.acf_fc_layout" class="lazy">
-                <img v-lazy="section.image.url" :alt="section.image.alt" />
-              </div>
-
-              <div v-else-if="'image_quote' === section.acf_fc_layout" class="flex items-center">
-                <div class="w-1/3 mr-auto" v-if="section.image.url">
-                  <div class="lazy">
-                    <img v-lazy="section.image.url" :alt="section.image.alt" />
-                  </div>
-                </div>
-                <div class="w-2/4" v-if="section.quote">
-                <blockquote class="font-serif uppercase leading-none text-4xl">
-                  <p v-html="section.quote"></p>
-                  <cite class="not-italic">{{ section.cite }}</cite>
-                </blockquote>
-                </div>
-              </div>
-
-              <div
-                v-if="'image_set' === section.acf_fc_layout"
-                class="flex"
-                :class="section.image_layout">
-                <div
-                  v-for="(image, i) in section.images"
-                  :key="'image-' + i">
-                    <div class="lazy">
-                      <img v-if="image.image.url" v-lazy="image.image.url" :alt="image.image.alt" />
-                    </div>
-                </div>
-              </div>
-
-            </section>
-          </div>
+          <Sections v-if="pageReady" :sections="data.acf.content" />
         </transition>
       </div>
       
@@ -85,9 +41,9 @@
 import { TimelineMax } from "gsap";
 
 import Colon from '~/assets/svg/BlackColon.svg?inline';
-import PinkDiamond from '~/assets/svg/PinkDiamond.svg?inline';
 import Underline from '~/assets/svg/Underline.svg?inline';
 
+import Sections from '~/components/Sections.vue';
 import Projects from '~/components/Projects.vue';
 import Footer from '~/components/Footer.vue';
 import FooterNavigation from '~/components/FooterNavigation.vue';
@@ -100,15 +56,11 @@ export default {
 
   components: {
     Colon,
-    PinkDiamond,
     Underline,
+    Sections,
     Projects,
     FooterNavigation,
     Footer,
-  },
-
-  mixins: {
-    filterPostContent: Function
   },
 
   head() {
@@ -120,7 +72,7 @@ export default {
 
   data() {
     return {
-      expanded: false,
+      pageReady: false,
     };
   },
 
@@ -132,6 +84,8 @@ export default {
   },
 
   mounted() {
+    const _that = this;
+
     console.log('post data --', this.data);
     
     this.$nextTick(this.addListeners);
@@ -153,7 +107,7 @@ export default {
       });
 
       let tl = new TimelineMax();
-      tl.staggerFrom('.title-item', .6 , { y: '110%', delay: .6, ease: "power3.out"}, .1 );
+      tl.staggerTo('.title-item', .6 , { y: 0, delay: .6, ease: "power3.out"}, .1, "+=0", () => _that.pageReady = true  );
     }
   },
 
@@ -213,28 +167,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
   .single {
     @apply flex flex-col relative min-h-screen;
   }
 
-  .small_large {
-    > div:first-child {
-      @apply w-1/3 pr-10
-    }
-
-    > div:nth-child(2) {
-      @apply w-2/3
-    }
-  }
-
-  .large_small {
-    > div:first-child {
-      @apply w-2/3
-    }
-
-    > div:nth-child(2) {
-      @apply w-1/3 pl-10
-    }
+  .title-item {
+    transform: translateY(110%);
   }
 </style>

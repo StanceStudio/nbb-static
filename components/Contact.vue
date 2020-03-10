@@ -14,26 +14,26 @@
 
       <div class="min-h-screen">
         <transition name="fade">
-          <div v-show="pageReady" class="flex pb-20">
-            <div class="md:w-5/12">
+          <div v-show="pageReady" class="md:flex pb-20">
+            <div class="md:w-5/12 mb-10 md:mb-0">
               <img :src="data.acf.image.url" alt="">
             </div>
-            <div class="md:w-1/2 pl-14 xxl:pl-20 flex flex-col justify-between">
+            <div class="md:w-1/2 md:pl-8 lg:pl-14 xxl:pl-20 flex flex-col justify-between">
               <div class="mb-10">
-                <div class="font-serif text-xl xxl:text-2xl mb-8">
+                <div class="font-serif text-xl xxl:text-2xl mb-4 lg:mb-8">
                   <PinkDiamond style="width: 0.5em;" class="mr-1 inline-block" /> ENQUIRIES
                 </div>
-                <div class="text-xl xxl:text-2xl font-light pl-20 leading-snug">
+                <div class="text-xl xxl:text-2xl font-light md:pl-10 xl:pl-20 leading-snug">
                   <a href="tel:+44 (0)20 7349 7099" class="hover:text-pink">+44 (0)20 7349 7099</a><br/>
                   <a href="mailto:CONTACT@NBBTRADING.COM" class="hover:text-pink">CONTACT@NBBTRADING.COM</a>
                 </div>
               </div>
 
               <div class="mb-10">
-                <div class="font-serif text-xl xxl:text-2xl mb-8">
+                <div class="font-serif text-xl xxl:text-2xl mb-4 lg:mb-8">
                   <PinkDiamond style="width: 0.5em;" class="mr-1 inline-block" /> EMAIL
                 </div>
-                <div class="text-xl xxl:text-2xl font-light pl-20 leading-snug">
+                <div class="text-xl xxl:text-2xl font-light md:pl-10 xl:pl-20 leading-snug">
                   <a href="mailto:NILOUFAR@NBBTRADING.COM" class="hover:text-pink">NILOUFAR@NBBTRADING.COM</a><br/>
                   <a href="mailto:SARA@NBBTRADING.COM" class="hover:text-pink">SARA@NBBTRADING.COM</a><br/>
                   <a href="mailto:ELENA@NBBTRADING.COM" class="hover:text-pink">ELENA@NBBTRADING.COM</a><br/>
@@ -42,20 +42,20 @@
               </div>
 
               <div class="mb-10">
-                <div class="font-serif text-xl xxl:text-2xl mb-8">
+                <div class="font-serif text-xl xxl:text-2xl mb-4 lg:mb-8">
                   <PinkDiamond style="width: 0.5em;" class="mr-1 inline-block" /> ADDRESS
                 </div>
-                <div class="text-xl xxl:text-2xl font-light pl-20 leading-snug">
+                <div class="text-xl xxl:text-2xl font-light md:pl-10 xl:pl-20 leading-snug">
                   132-134 WORLD’S END STUDIOS <br/>
 LOTS RD, LONDON, SW10 0RJ
                 </div>
               </div>
 
               <div>
-                <div class="font-serif text-xl xxl:text-2xl mb-8">
+                <div class="font-serif text-xl xxl:text-2xl mb-4 lg:mb-8">
                   <PinkDiamond style="width: 0.5em;" class="mr-1 inline-block" /> FOLLOW
                 </div>
-                <div class="text-xl xxl:text-2xl font-light pl-20 leading-snug">
+                <div class="text-xl xxl:text-2xl font-light md:pl-10 xl:pl-20 leading-snug">
                   <a href="https://instagram.com" class="hover:text-pink">INSTAGRAM</a>
                 </div>
               </div>
@@ -134,7 +134,7 @@ export default {
       });
 
       let tl = new TimelineMax();
-      tl.staggerFrom('.title-item', .6 , { y: '110%', delay: .6, ease: "power3.out"}, .1, "+=0", () => _that.pageReady = true );
+      tl.staggerTo('.title-item', .6 , { y: 0, delay: .6, ease: "power3.out"}, .1, "+=0", () => _that.pageReady = true );
     }
   },
 
@@ -142,29 +142,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-  .single {
-    @apply flex flex-col relative min-h-screen;
-  }
-
-  .small_large {
-    > div:first-child {
-      @apply w-1/3 pr-10
-    }
-
-    > div:nth-child(2) {
-      @apply w-2/3
-    }
-  }
-
-  .large_small {
-    > div:first-child {
-      @apply w-2/3
-    }
-
-    > div:nth-child(2) {
-      @apply w-1/3 pl-10
-    }
-  }
-</style>

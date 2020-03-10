@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-green min-h-screen pt-26">
+    <div class="bg-green min-h-screen pt-20 xl:pt-26">
       <Projects :projects="projects" class="container" />
       <Footer />
     </div>
@@ -53,7 +53,7 @@ export default {
   .site-footer {
     @apply opacity-0;
 
-    transition: opacity 0.2s;
+    transition: opacity 0.4s cubic-bezier(.13,.74,.5,.97);
   }
 }
 

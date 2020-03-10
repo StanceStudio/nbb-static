@@ -19,7 +19,7 @@
                 <div
                     @mousemove="moveImages"
                     @mouseleave="displayImages = false"
-                    @mouseenter="projectMouseOver(project)">
+                    @mouseenter="projectMouseOver(project); moveImages">
                     <h2
                     v-html="project.title.rendered"
                     class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase inline-block leading-none">
@@ -45,7 +45,7 @@
             <div
                 v-show="displayImages"
                 ref="images"
-                class="hot-images fixed z-50 pointer-events-none">
+                class="hidden xl:block hot-images fixed z-50 pointer-events-none">
             <div
                 v-if="heading"
                 class="uppercase mb-3 font-light text-white text-lg"

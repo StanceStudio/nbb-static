@@ -4,32 +4,37 @@
     aria-label="Main"
     class="ml-auto xl:-mr-6">
       <ul
-        class="nav flex flex-col md:flex-row md:items-center font-serif uppercase absolute h-screen md:h-auto md:relative inset-0 md:inset-auto z-10 bg-lavender md:bg-transparent pt-18 md:pt-0 opacity-0 invisible md:visible md:opacity-100 px-4 md:px-0"
+        class="nav flex flex-col lg:flex-row lg:items-center font-serif uppercase absolute h-screen lg:h-auto lg:relative inset-0 lg:inset-auto z-10 bg-green lg:bg-transparent pt-18 lg:pt-0 opacity-0 invisible lg:visible lg:opacity-100 px-4 lg:px-0"
         :class="{'nav--visible' : showNav}">
         <li
           v-for="(item) in menuItems"
           :key="item.id"
-          class="text-2xl md:text-lg xl:px-6"
+          class="overflow-hidden text-3xl md:text-4xl lg:text-lg lg:px-6 leading-tight"
         >
-          <nuxt-link
-            exact
-            :to="{ path: item.link === 'home' ? '/' : `/${item.link}` }"
-            @click.native="showNav = false"
-          >
-            {{ item.title }}
-          </nuxt-link>
+          <span
+            ref="menuItem"
+            class="menu-item inline-block">
+            <nuxt-link
+              exact
+              :to="{ path: item.link === 'home' ? '/' : `/${item.link}` }"
+              @click.native="toggleMenu">
+              {{ item.title }}
+            </nuxt-link>
+          </span>
         </li>
       </ul>
-    <button @click.prevent="toggleMenu" type="button" class="block md:hidden uppercase font-serif text-lg relative z-20">{{ showNav ? 'Close' : 'Menu' }}</button>
+    <button @click.prevent="toggleMenu" type="button" class="block lg:hidden uppercase font-light text-lg relative z-20">{{ showNav ? 'Close' : 'Menu' }}</button>
   </nav>
 </template>
 
 <script>
+import { TweenMax, TimelineMax } from "gsap";
+
 export default {
   name: "Navigation",
 
   data() {
-  return {
+    return {
       menuItems: [],
       showNav: false,
     };
@@ -54,11 +59,35 @@ export default {
         this.menuItems = navigation.items.map(item => new NavigationItem(item));
     },
 
+    showMenuItems() {
+      if (process.browser) {
+        const mq = window.matchMedia( "(max-width: 900px)" );
+        if (mq.matches) {
+          let tl = new TimelineMax();
+          TweenMax.staggerTo('.menu-item', .6 , { y: 0, delay: .2, ease: "power3.out"}, .1 );
+        }
+      }
+    },
+
+    hideMenuItems() {
+      TweenMax.staggerTo('.menu-item', .6, { y: '110%', delay: 0, ease: "power3.out"}, .1 );
+    },
+
     toggleMenu() {
-      if (this.showNav) {
-        this.showNav = false
-      } else {
-        this.showNav = true;
+      if (process.browser) {
+        const mq = window.matchMedia( "(max-width: 900px)" );
+        
+        if (mq.matches) {
+          if (this.showNav) {
+            this.showNav = false;
+            setTimeout(() => {
+              this.hideMenuItems();
+            }, 200);
+          } else {
+            this.showMenuItems();
+            this.showNav = true;
+          }
+        }
       }
     }
   }
@@ -73,6 +102,12 @@ export default {
 .nav--visible {
   @apply opacity-100 visible;
 
-   transition: visibility 0s linear 0s, opacity .3s;
+  transition: visibility 0s linear 0s, opacity .3s;
+}
+
+.menu-item {
+  @media (max-width: 900px) {
+    transform: translateY(110%);
+  }
 }
 </style>

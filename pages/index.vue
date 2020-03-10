@@ -46,6 +46,9 @@
         </div>
       </div>
     </section>
+
+    <Sections :sections="page.acf.content" class="container"/>
+
     <div class="container">
       <Underline class="w-full"/>
       <FooterNavigation class="pt-20" />
@@ -58,6 +61,7 @@
 import lottie from "lottie-web";
 import animationData from "~/assets/json/HomePage.json";
 import Underline from '~/assets/svg/Underline.svg?inline'
+import Sections from '~/components/Sections.vue';
 import Footer from '~/components/Footer.vue';
 import FooterNavigation from '~/components/FooterNavigation.vue';
 
@@ -70,14 +74,12 @@ export default {
         _embed: true
       }
     });
-
-    console.log(data);
-
     return { page: data };
   },
 
   components: {
     Underline,
+    Sections,
     Footer,
     FooterNavigation,
   },
@@ -181,9 +183,9 @@ export default {
   transition-delay: 0.6s;
 }
 
-.intro--loading {
+/* .intro--loading {
   @apply h-screen;
-}
+} */
 
 .intro--loading * {
   cursor: wait;
