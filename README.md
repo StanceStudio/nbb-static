@@ -1,16 +1,3 @@
-<p align="left">
-  <a href="https://travis-ci.org/krestaino/nuepress"><img src="https://travis-ci.org/krestaino/nuepress.svg?branch=master" alt="Build Status"></a>
-</p>
-
-## NuePress
-
-[Nuxt.js](https://github.com/nuxt/nuxt.js) + [WordPress REST API](https://developer.wordpress.org/rest-api/)
-
-![Screenshot](.github/screenshot.png)
-
-## Demo
-
-[https://nuepress.kmr.io](https://nuepress.kmr.io/)
 
 ## Development
 
@@ -30,9 +17,3 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-
-## Wordpress Setup
-
-Install the [wordpress/wp-content/themes/nuepress](wordpress/wp-content/themes/nuepress) theme in WordPress.
-
-This theme is required to generate the sitemaps. It extends the `per_page_limit` REST API limitation. There are a few other non-critical changes included too. See the [functions.php](wordpress/wp-content/themes/nuepress/functions.php) for more.
