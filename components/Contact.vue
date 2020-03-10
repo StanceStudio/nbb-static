@@ -13,7 +13,7 @@
       </header>
 
       <div class="min-h-screen">
-        <transition class="fade">
+        <transition name="fade">
           <div v-show="pageReady" class="flex pb-20">
             <div class="md:w-5/12">
               <img :src="data.acf.image.url" alt="">
