@@ -76,6 +76,11 @@ export default {
   //   wordpressUrl: process.env.NODE_ENV === 'production' ? 'https://nbb-api.stance.design' : 'http://nbb.local',
   // },
 
+  env: {
+    WORDPRESS_API_URL: process.env.WORDPRESS_API_URL,
+    WORDPRESS_URL: process.env.WORDPRESS_URL
+  },
+
   sitemap: {
     hostname: 'https://nbb-api.stance.design'
   },
