@@ -23,7 +23,9 @@ export default {
     ]
   },
 
-  loading: false,
+  loading: {
+    color: '#ff40b4'
+  },
 
   css: [
     '~/assets/css/fonts.css',
