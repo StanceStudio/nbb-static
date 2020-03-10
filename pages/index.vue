@@ -39,6 +39,11 @@
             <img :src="image.src" alt="" />
           </div>
         </div>
+        <div v-if="page.acf.statement_link" class="text-pink font-sans font-light mt-16 text-2xl text-center">
+          <nuxt-link :to="filterPostContent(page.acf.statement_link)">
+            READ MORE
+          </nuxt-link>
+        </div>
       </div>
     </section>
     <div class="container">
@@ -59,10 +64,26 @@ import FooterNavigation from '~/components/FooterNavigation.vue';
 export default {
   name: "Home",
 
+  async asyncData({ app, store, params }) {    
+    const { data } = await app.$axios.get(`${process.env.wordpressAPIUrl}/stance/v1/front-page`, {
+      params: {
+        _embed: true
+      }
+    });
+
+    console.log(data);
+
+    return { page: data };
+  },
+
   components: {
     Underline,
     Footer,
     FooterNavigation,
+  },
+
+  mixins: {
+    filterPostContent: Function
   },
   
   head() {
@@ -161,7 +182,7 @@ export default {
 }
 
 .intro--loading {
-  @apply overflow-hidden h-screen;
+  @apply h-screen;
 }
 
 .intro--loading * {

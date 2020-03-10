@@ -7,12 +7,12 @@
           :key="item.id"
           class="sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none"
         >
-          <NuxtLink
+          <nuxt-link
             exact
             :to="item.link === 'home' ? '/' : `${item.link}`"
           >
             {{ item.title }}
-          </NuxtLink>
+          </nuxt-link>
         </li>
       </ul>
     </nav>

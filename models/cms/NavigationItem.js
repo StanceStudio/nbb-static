@@ -1,6 +1,8 @@
 // Use symbols for private attributes
 const _fields = Symbol('fields');
 
+const parseUrl = url => url.split('/').filter((item,index) => index > 2).join('/');
+
 export default class NavigationItem {
     /**
      * The page constructor
@@ -34,7 +36,7 @@ export default class NavigationItem {
      *
      * @return  {String}
      */
-    get link () {            
-        return this[_fields].slug;
+    get link () {
+        return parseUrl(this[_fields].url);
     }
 };

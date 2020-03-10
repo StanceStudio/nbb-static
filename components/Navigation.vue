@@ -11,13 +11,13 @@
           :key="item.id"
           class="text-2xl md:text-lg xl:px-6"
         >
-          <NuxtLink
+          <nuxt-link
             exact
-            :to="item.link === 'home' ? '/' : `/${item.link}`"
+            :to="{ path: item.link === 'home' ? '/' : `/${item.link}` }"
             @click.native="showNav = false"
           >
             {{ item.title }}
-          </NuxtLink>
+          </nuxt-link>
         </li>
       </ul>
     <button @click.prevent="toggleMenu" type="button" class="block md:hidden uppercase font-serif text-lg relative z-20">{{ showNav ? 'Close' : 'Menu' }}</button>
