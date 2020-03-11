@@ -8,8 +8,7 @@
           <div class="title-item flex items-center">Spaces <Colon style="width: 0.085em;" class="ml-2"/></div>
         </h3>
         <h1
-          class="title text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-tight">
-          <div class="title-item">{{ title }} <Colon v-if="data.template === 'templates/template-about.php'" style="width: 0.085em;" class="inline"/></div>
+          class="title text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-tight" v-html="title">
         </h1>
         <h2
           v-if="data.acf.heading"
