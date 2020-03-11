@@ -89,7 +89,7 @@ export default {
     async fetchProjects() {
         if (!this.$store.state.projects) {
             let projects = await this.$axios.get(
-                `${process.env.wordpressAPIUrl}/wp/v2/projects?per_page=100`
+                `${process.env.wpAPI}/wp/v2/projects?per_page=100`
             );
 
             this.$store.commit('setProjects', projects.data);

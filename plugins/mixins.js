@@ -32,8 +32,8 @@ Vue.mixin({
      * 
      */
     filterPostContent(content) {
-      const https = process.env.wordpressUrl.replace(/^http:/, 'https:');
-      const http = process.env.wordpressUrl.replace(/^https:/, 'http:');
+      const https = process.env.wpURL.replace(/^http:/, 'https:');
+      const http = process.env.wpURL.replace(/^https:/, 'http:');
       return content.replace(https,'').replace(http,'');
     },
   }

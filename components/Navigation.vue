@@ -53,7 +53,7 @@ export default {
             { data: navigation },
         ] = await Promise.all([
             import('~/models/cms/NavigationItem'),
-            this.$axios.get(`${process.env.wordpressAPIUrl}/menus/v1/locations/main-nav`),
+            this.$axios.get(`${process.env.wpAPI}/menus/v1/locations/main-nav`),
         ]);        
 
         this.menuItems = navigation.items.map(item => new NavigationItem(item));

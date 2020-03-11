@@ -11,7 +11,7 @@ import Contact from '~/components/Contact.vue';
 
 export default {
   async asyncData({ app, store, params }) {    
-    const { data } = await app.$axios.get(`${process.env.wordpressAPIUrl}/wp/v2/pages`, {
+    const { data } = await app.$axios.get(`${process.env.wpAPI}/wp/v2/pages`, {
       params: {
         slug: params.page,
         _embed: true

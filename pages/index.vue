@@ -69,7 +69,7 @@ export default {
   name: "Home",
 
   async asyncData({ app, store, params }) {    
-    const { data } = await app.$axios.get(`${process.env.wordpressAPIUrl}/stance/v1/front-page`, {
+    const { data } = await app.$axios.get(`${process.env.wpAPI}/stance/v1/front-page`, {
       params: {
         _embed: true
       }

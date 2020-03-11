@@ -109,7 +109,7 @@ a {
 
 .fade-in {
   opacity: 0;
-  transition: opacity .3s cubic-bezier(.13,.74,.5,.97);
+  transition: opacity .5s cubic-bezier(.13,.74,.5,.97);
 }
 
 .fade-in.show {
@@ -118,7 +118,7 @@ a {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .3s cubic-bezier(.13,.74,.5,.97);
+  transition: opacity .5s cubic-bezier(.13,.74,.5,.97);
 }
 
 .fade-enter,

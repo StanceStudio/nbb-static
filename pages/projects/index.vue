@@ -13,7 +13,7 @@ import Footer from '~/components/Footer';
 export default {
   async asyncData({ app, store, params }) {
     const { data } = await app.$axios.get(
-      `${process.env.wordpressAPIUrl}/wp/v2/projects?orderby=date&per_page=100&_embed`
+      `${process.env.wpAPI}/wp/v2/projects?orderby=date&per_page=100&_embed`
     );
     return { projects: data };
   },

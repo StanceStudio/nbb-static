@@ -51,6 +51,21 @@ export default {
 
   axios: {},
 
+  workbox: {
+    runtimeCaching: [
+      {
+        urlPattern: process.env.WP_API + '/.*',
+        strategyOptions: {
+          cacheName: 'wordpress',
+          cacheExpiration: {
+            maxEntries: 50,
+            maxAgeSeconds: 300
+          }
+        }
+      },
+    ]
+  },
+
   build: {
     babel: {
       presets({ isServer }) {
@@ -74,8 +89,8 @@ export default {
   },
 
   env: {
-    wordpressAPIUrl: process.env.NODE_ENV === 'production' ? 'https://nbb-api.stance.design/wp-json' : 'https://nbb.local/wp-json',
-    wordpressUrl: process.env.NODE_ENV === 'production' ? 'https://nbb-api.stance.design' : 'https://nbb.local',
+    wpAPI: process.env.NODE_ENV === 'production' ? 'https://nbb-api.stance.design/wp-json' : 'https://nbb.local/wp-json',
+    wpURL: process.env.NODE_ENV === 'production' ? 'https://nbb-api.stance.design' : 'https://nbb.local',
   },
 
   sitemap: {
@@ -83,13 +98,13 @@ export default {
   },
 
   // sitemap: {
-  //   hostname: process.env.wordpressUrl,
+  //   hostname: process.env.wpURL,
   //   path: '/sitemap.xml',
   //   sitemaps: [
   //     {
   //       path: '/sitemap-articles.xml',
   //       routes: async () => {
-  //         const { data } = await axios.get(process.env.wordpressAPIUrl + '/wp/v2/posts', {
+  //         const { data } = await axios.get(process.env.wpAPI + '/wp/v2/posts', {
   //           params: { orderby: 'date', per_page: 1000000 }
   //         });
   //         return data.map(article => ({
@@ -101,7 +116,7 @@ export default {
   //     {
   //       path: '/sitemap-pages.xml',
   //       routes: async () => {
-  //         const { data } = await axios.get(process.env.wordpressAPIUrl + '/wp/v2/pages', {
+  //         const { data } = await axios.get(process.env.wpAPI + '/wp/v2/pages', {
   //           params: { orderby: 'date', per_page: 1000000 }
   //         });
   //         return data.map(page => ({
