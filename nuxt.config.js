@@ -44,7 +44,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/dotenv',
-    '@nuxtjs/pwa',
+    //'@nuxtjs/pwa',
     '@nuxtjs/sitemap',
     '@nuxtjs/svg'
   ],
