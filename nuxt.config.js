@@ -49,12 +49,17 @@ export default {
     '@nuxtjs/svg'
   ],
 
+  env: {
+    wpAPI: process.env.WP_API,
+    wpURL: process.env.WP_URL,
+  },
+
   axios: {},
 
   workbox: {
     runtimeCaching: [
       {
-        urlPattern: process.env.WP_API + '/.*',
+        urlPattern:  process.env.WP_API + '/.*',
         strategyOptions: {
           cacheName: 'wordpress',
           cacheExpiration: {
@@ -86,11 +91,6 @@ export default {
         'postcss-nested': {},
       },
     },
-  },
-
-  env: {
-    wpAPI: process.env.NODE_ENV === 'production' ? 'https://nbb-api.stance.design/wp-json' : 'https://nbb.local/wp-json',
-    wpURL: process.env.NODE_ENV === 'production' ? 'https://nbb-api.stance.design' : 'https://nbb.local',
   },
 
   sitemap: {
@@ -131,7 +131,7 @@ export default {
   generate: {
     async routes() {
       let posts = await axios
-        .get('https://nbb-api.stance.design/wp-json/wp/v2/posts', {
+        .get(`${ process.env.WP_API}/wp/v2/posts`, {
           params: { orderby: 'date', per_page: 100, _embed: null }
         })
         .then(res => {          
@@ -143,7 +143,7 @@ export default {
           });
         });
       let pages = await axios
-        .get('https://nbb-api.stance.design/wp-json/wp/v2/pages', {
+        .get(`${ process.env.WP_API}/wp/v2/pages`, {
           params: { orderby: 'date', per_page: 100, _embed: null }
         })
         .then(res => {
@@ -155,7 +155,7 @@ export default {
           });
         });
       let projects = await axios
-        .get('https://nbb-api.stance.design/wp-json/wp/v2/projects', {
+        .get(`${ process.env.WP_API}/wp/v2/projects`, {
           params: { orderby: 'date', per_page: 100, _embed: null }
         })
         .then(res => {
