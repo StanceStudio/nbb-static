@@ -1,15 +1,15 @@
 <template>
   <article
-    class="single pt-20 xl:pt-26"> 
+    class="single pt-20 xl:pt-26"
+    :class="{'bg-sand' : type === 'project' || data.template === 'templates/template-art-direction.php'}"> 
     <div class="container">
       <header class="mb-10 md:mb-20">
         <h3 v-if="type === 'project'" class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none inline-block overflow-hidden">
           <div class="title-item flex items-center">Spaces <Colon style="width: 0.085em;" class="ml-2"/></div>
         </h3>
         <h1
-          class="title text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-tight"
-          v-html="title"
-        >
+          class="title text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-tight">
+          <div class="title-item">{{ title }} <Colon v-if="data.template === 'templates/template-about.php'" style="width: 0.085em;" class="inline"/></div>
         </h1>
         <h2
           v-if="data.acf.heading"
@@ -86,7 +86,7 @@ export default {
   mounted() {
     const _that = this;
 
-    console.log('post data --', this.data);
+    //console.log('post data --', this.data);
     
     this.$nextTick(this.addListeners);
 
@@ -151,7 +151,7 @@ export default {
       // If target is still not a link, ignore
       if (!(target instanceof HTMLAnchorElement)) { return }
       const href = target.getAttribute('href')
-      console.log(href);
+      //console.log(href);
       
       // Get link target, if local link, navigate with router link
       if (href && href[0] === '/') {

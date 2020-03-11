@@ -10,7 +10,7 @@
             <a href="#" class="hover:text-pink" @click.prevent="scrollTop">Back to top</a>
           </div>
           <div class="w-1/2 md:w-1/3">
-            <a href="https://instagram.com" class="hover:text-pink">Instagram</a>
+            <a href="https://www.instagram.com/niloufarbakhtiar/" class="hover:text-pink">Instagram</a>
           </div>
         </div>
       </div>

@@ -90,7 +90,7 @@ export default {
   },
 
   mounted() {
-    console.log('post data --', this.data);
+    //console.log('post data --', this.data);
     
     // move this to a heading component
     if (process.browser) {

@@ -10,8 +10,11 @@
           <nuxt-link
             exact
             :to="item.link === 'home' ? '/' : `/${item.link}`"
-          >
+            class="nav-item__link inline-block">
             {{ item.title }}
+            <div class="underline">
+              <Underline class="text-pink"/>
+            </div>
           </nuxt-link>
         </li>
       </ul>
@@ -20,9 +23,14 @@
 </template>
 
 <script>
+import Underline from '~/assets/svg/Underline.svg?inline';
 
 export default {
-  name: "Navigation",
+  name: "FooterNavigation",
+
+  components: {
+    Underline,
+  },
 
   data() {
   return {
@@ -52,5 +60,16 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.underline {
+  transition:all .6s cubic-bezier(.13,.74,.5,.97);
+  -webkit-clip-path: inset(0 100% 0 0);
+  clip-path: inset(0 100% 0 0);
+}
+
+.nav-item__link:hover {
+  .underline {
+    clip-path: inset(0);
+  }
+}
 </style>

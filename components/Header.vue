@@ -1,11 +1,10 @@
 <template>
   <header
-    class="site-header w-full px-4 pt-6 xl:px-8 xxl:pt-6 xxl:px-14 absolute top-0 z-10 flex items-center"
-  >
+    class="site-header w-full px-4 pt-6 xl:px-8 xxl:pt-6 xxl:px-14 absolute top-0 z-10 flex items-center">
     <nuxt-link
       to="/"
-      @click.native="$refs.nav.toggleMenu"
-      class="relative xl:fixed z-20">
+      @click.native="$refs.nav.closeMenu"
+      class="site-logo relative xl:fixed z-20">
         <Logo class="w-16 xl:w-18 xxl:w-32" />
     </nuxt-link>
     <Navigation ref="nav" />

@@ -12,12 +12,19 @@ a {
   @apply px-4;
 
   @screen xl {
-    @apply w-10/12 ml-auto pr-6;
+    /* @apply w-10/12 ml-auto pr-6; */
+    @apply pr-6;
+    padding-left: 10rem;
   }
 
   @screen xxl {
     @apply pr-14;
+    padding-left: 18.5rem;
   }
+}
+
+.wrapper {
+  @apply bg-lavender antialiased font-sans leading-normal tracking-normal flex flex-col w-screen min-h-screen text-black;
 }
 
 .wysiwyg {

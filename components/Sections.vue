@@ -76,7 +76,8 @@
         v-if="'heading' === section.acf_fc_layout">
         <h2
           v-html="section.heading_text"
-          class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none">
+          class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none"
+          :class="{'text-pink' : section.heading_colour === 'pink'}">
         </h2>
       </div>
 

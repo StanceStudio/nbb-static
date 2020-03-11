@@ -65,11 +65,6 @@ export default {
 
 .out-in-enter-to {
   transform: translateX(0);
-
-  /* .site-footer {
-    @apply opacity-100;
-    transition-delay: 1s;
-  } */
 }
 
 .page-leave-active,

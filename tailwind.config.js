@@ -9,7 +9,9 @@ const colors = {
   white: "#FFFFFF",
   lavender: "#DAD5D6",
   pink: "#FF40B4",
-  green: "#97A793"
+  lightgreen: "#97A793",
+  green: "#00514D",
+  sand: "#E5E4E4",
 };
 
 module.exports = {

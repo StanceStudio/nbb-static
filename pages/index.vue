@@ -158,6 +158,10 @@ export default {
 
     anim.onComplete = function() {
       _that.introLoaded = true;
+      
+      if (process.browser) {
+        document.body.classList.add('intro-loaded');
+      }
     };
   },
 
@@ -170,9 +174,14 @@ export default {
 </script>
 
 <style>
-.cover {
+.home:not(.intro-loaded) .wrapper {
+  @apply overflow-hidden h-screen;
+}
+
+.home .site-header,
+.home .cover {
   @apply opacity-0;
-  transition: opacity 1.4s cubic-bezier(0.13, 0.74, 0.5, 0.97);
+  transition: opacity 1s cubic-bezier(0.13, 0.74, 0.5, 0.97);
 }
 
 .home .site-header {  
@@ -183,16 +192,16 @@ export default {
   transition-delay: 0.6s;
 }
 
-/* .intro--loading {
-  @apply h-screen;
-} */
+.home .site-header {
+  transition-delay: 1.2s;
+}
 
 .intro--loading * {
   cursor: wait;
 }
 
-.intro--loaded .site-header,
-.intro--loaded .cover {
+.intro-loaded .site-header,
+.intro-loaded .cover {
   @apply opacity-100;
 }
 

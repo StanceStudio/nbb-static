@@ -12,35 +12,38 @@
             v-if="project.id !== exclude"
             class="overflow-hidden"
             >
-            <div class="project-item">
-                <nuxt-link
-                :to="`/projects/${project.slug}`"
-                class="inline-block relative">
-                <div
-                    @mousemove="moveImages"
-                    @mouseleave="displayImages = false"
-                    @mouseenter="projectMouseOver(project); moveImages">
-                    <h2
-                    v-html="project.title.rendered"
-                    class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase inline-block leading-none">
-                    </h2>
-                    <!-- <Underline class="line" /> -->
-                    <div
-                    v-if="project.acf.featured_images"
-                    class="flex w-full absolute inset-0">
-                    <div
-                        v-for="image in project.acf.featured_images"
-                        :key="image.id"
-                        @mouseenter="showImage(image)"
-                        class="flex-grow">
-                    </div>
-                    </div>
-                </div>
-                </nuxt-link>
-            </div>
+              <div class="project-item">
+                  <nuxt-link
+                  :to="`/projects/${project.slug}`"
+                  class="inline-block relative">
+                  <div
+                      @mousemove="moveImages"
+                      @mouseleave="displayImages = false"
+                      @mouseenter="projectMouseOver(project); moveImages">
+                      <h2
+                      v-html="project.title.rendered"
+                      class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase inline-block leading-none">
+                      </h2>
+                      <div class="underline">
+                        <Underline class="text-pink"/>
+                      </div>
+                      <div
+                      v-if="project.acf.featured_images"
+                      class="flex w-full absolute inset-0">
+                      <div
+                          v-for="image in project.acf.featured_images"
+                          :key="image.id"
+                          @mouseenter="showImage(image)"
+                          class="flex-grow">
+                      </div>
+                      </div>
+                  </div>
+                  </nuxt-link>
+              </div>
             </li>
             </template>
         </ul>
+
         <transition name="fade">
             <div
                 v-show="displayImages"
@@ -127,13 +130,6 @@ export default {
 
     projectMouseOver(project) {
       this.heading = project.acf.heading;
-      if (process.browser) {
-        // anime({
-        //   targets: '.line',
-        //   fill: '#FFF',
-        //   easing: 'linear'
-        // });
-      }
     },
   },
 };
@@ -141,8 +137,21 @@ export default {
 
 <style scoped>    
     .page-leave-active {
-        .hot-images {
-            display: none;
+        .hot-images,
+        .underline {
+            opacity: 0;
         }
     }
+        
+  .underline {
+    transition:all .6s cubic-bezier(.13,.74,.5,.97);
+    -webkit-clip-path: inset(0 100% 0 0);
+    clip-path: inset(0 100% 0 0);
+  }
+
+  .project-item:hover {
+    .underline {
+      clip-path: inset(0);
+    }
+  }
 </style>
