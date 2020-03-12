@@ -12,7 +12,7 @@
 
       <ul class="min-h-screen">
         <li
-          v-for="(section, i) in data.acf.content"
+          v-for="(section, i) in data.acf.press_items"
           :key="'section-' + i"
           :data-type="section.acf_fc_layout"
           class="py-1 xl:py-4">
