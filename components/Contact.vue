@@ -56,7 +56,7 @@ LOTS RD, LONDON, SW10 0RJ
                   <PinkDiamond style="width: 0.5em;" class="mr-1 inline-block" /> FOLLOW
                 </div>
                 <div class="text-xl xxl:text-2xl font-light md:pl-10 xl:pl-20 leading-snug">
-                  <a href="https://instagram.com" class="hover:text-pink">INSTAGRAM</a>
+                  <a href="https://www.instagram.com/niloufarbakhtiar/" class="hover:text-pink">INSTAGRAM</a>
                 </div>
               </div>
             </div>
