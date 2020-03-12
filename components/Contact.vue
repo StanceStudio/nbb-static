@@ -1,6 +1,6 @@
 <template>
   <article
-    class="single pt-26"
+    class="single pt-20 xl:pt-26"
     :class="{ready : pageReady}"
 > 
     <div class="container">
@@ -65,7 +65,7 @@ LOTS RD, LONDON, SW10 0RJ
       </div>
 
       <Underline class="w-full"/>
-      <FooterNavigation class="pt-20" />
+      <FooterNavigation class="pt-12 sm:pt-18 xxl:pt-20" />
     </div>
     <Footer />
   </article>
@@ -115,10 +115,8 @@ export default {
   },
 
   mounted() {
-    const _that = this;
-
-    console.log('post data --', this.data);
-    
+    //console.log('post data --', this.data);
+    const _that = this;    
     // move this to a heading component
     if (process.browser) {
       require('~/assets/js/SplitTextPlugin.js');

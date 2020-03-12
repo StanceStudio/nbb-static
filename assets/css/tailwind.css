@@ -24,7 +24,7 @@ a {
 }
 
 .wrapper {
-  @apply bg-lavender antialiased font-sans leading-normal tracking-normal flex flex-col w-screen min-h-screen text-black;
+  @apply bg-lavender antialiased font-sans leading-normal tracking-normal flex flex-col w-screen min-h-screen text-black overflow-hidden relative;
 }
 
 .wysiwyg {
@@ -133,6 +133,16 @@ a {
   opacity: 0;
 }
 
+.move-up-enter-active,
+.move-up-leave-active {
+  transition: opacity .2s cubic-bezier(.13,.74,.5,.97);
+}
+
+.move-up-enter,
+.move-up-leave-to {
+  opacity: 0;
+}
+
 .lazy {
   @apply relative;
   /* background-color: #fff; */
@@ -196,7 +206,7 @@ a {
 .hot-images {
   @apply ml-3;
 
-  width: 20rem;
+  width: 18rem;
 
   @screen xl {
     width: 22rem;

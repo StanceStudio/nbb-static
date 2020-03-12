@@ -24,13 +24,13 @@
 
       <div class="content min-h-screen pb-20">
         <transition name="fade">
-          <Sections v-if="pageReady" :sections="data.acf.content" />
+          <Sections v-if="pageReady" :content="content" />
         </transition>
       </div>
       
       <Underline class="w-full"/>
       <Projects v-if="data.type === 'project'" :projects="$store.state.projects" :exclude="data.id" class="pt-20"/>
-      <FooterNavigation v-else class="pt-20" />
+      <FooterNavigation v-else class="pt-12 sm:pt-18 xxl:pt-20" />
     </div>
     <Footer />
   </article>
@@ -80,6 +80,10 @@ export default {
       // if page is rendered put everything but first word on a new line.
       return this.type === 'page' ? this.data.title.rendered.replace(/^((\S+\s+){0}\S+)\s+/, '$1<br>') : this.data.title.rendered;
     },
+
+    content() {
+      return this.data.acf.content ? this.data.acf.content : [];
+    }
   },
 
   mounted() {

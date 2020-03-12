@@ -1,9 +1,9 @@
 <template>
   <footer
-    class="site-footer w-100 py-8 sm:py-12 xxl:py-14"
+    class="site-footer w-100 pb-8 pt-12 sm:pb-12 sm:pt-18 xxl:pb-14 xxl:pt-22"
     ref="footer"
   >
-    <div class="container flex justify-center mt-20">
+    <div class="container flex justify-center">
       <div
         class="w-full font-light flex uppercase text-lg sm:text-xl leading-tight md:text-left">
           <div class="w-1/2 mb-4 md:mb-0 md:w-2/3">

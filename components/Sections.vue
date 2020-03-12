@@ -1,7 +1,7 @@
 <template>
   <div>
     <section
-      v-for="(section, i) in sections"
+      v-for="(section, i) in content"
       :key="'section-' + i"
       :data-type="section.acf_fc_layout"
       class="py-10 xl:py-14">
@@ -108,7 +108,7 @@ export default {
   },
 
   props: {
-    sections: Array
+    content: Array
   },
 
   mixins: {

@@ -18,8 +18,8 @@
                   class="inline-block relative">
                   <div
                       @mousemove="moveImages"
-                      @mouseleave="displayImages = false"
-                      @mouseenter="projectMouseOver(project); moveImages">
+                      @mouseleave="hideImages"
+                      @mouseenter="projectMouseEnter(project, $event)">
                       <h2
                       v-html="project.title.rendered"
                       class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase inline-block leading-none">
@@ -34,6 +34,7 @@
                           v-for="image in project.acf.featured_images"
                           :key="image.id"
                           @mouseenter="showImage(image)"
+                          @mousemove="showImage(image)"
                           class="flex-grow">
                       </div>
                       </div>
@@ -44,16 +45,19 @@
             </template>
         </ul>
 
-        <transition name="fade">
+        <transition
+          name="move-up"
+          :duration="300">
             <div
                 v-show="displayImages"
                 ref="images"
-                class="hidden xl:block hot-images fixed z-50 pointer-events-none">
-            <div
+                class="hot-images hidden xl:block absolute z-50 pointer-events-none">
+              <div
                 v-if="heading"
                 class="uppercase mb-3 font-light text-white text-lg"
-                v-html="heading"></div>
-                <img :src="imageSrc"  alt="" />
+                v-html="heading">
+              </div>
+              <img :src="imageSrc"  alt="" />
             </div>
         </transition>
     </div>
@@ -84,8 +88,10 @@ export default {
     }
   },
 
-  created() {      
-    //this.fetchProjects();
+  mounted() {      
+   window.addEventListener('scroll', () => {
+     this.displayImages = false;
+   });
   },
 
   methods: {
@@ -108,12 +114,18 @@ export default {
       TweenMax.staggerTo('.project-item', .6, { y: '-110%', delay: 0, ease: "power3.out"}, .1 );
     },
 
+    hideImages() {
+      setTimeout(() => {
+        this.displayImages = false;
+      }, 200);
+    },
+
     moveImages(e) {
       if (this.$refs.images) {
         TweenMax.to(this.$refs.images, 0.3, {
           css: {
-            left: e.clientX,
-            top: e.clientY
+            left: e.pageX,
+            top: e.pageY
           }
         });
       }
@@ -124,12 +136,13 @@ export default {
         this.imageSrc = image.url;
         setTimeout(() => {
           this.displayImages = true;
-        }, 200);
+        }, 150);
       }
     },
 
-    projectMouseOver(project) {
+    projectMouseEnter(project, e) {
       this.heading = project.acf.heading;
+      this.moveImages(e);
     },
   },
 };

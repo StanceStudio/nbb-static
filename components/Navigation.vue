@@ -51,9 +51,7 @@ export default {
 
   updated() {
     this.$nextTick(() => {
-    this.$refs.navItem.forEach((item) => {
-      console.log(item);
-      
+    this.$refs.navItem.forEach((item) => {      
       const w = item.getBoundingClientRect().width;      
       if (w > 150) {
         item.classList.add('nav-item--lg');
@@ -161,7 +159,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .nav {
   transition: visibility 0s linear .3s, opacity .3s;  
 }
@@ -193,18 +191,6 @@ export default {
   @screen xl {
     transform: translateY(0)!important;
   }
-
-  /* img {
-    @apply inset-0;
-
-    object-fit: contain;
-    position: absolute;
-    width: 100%;
-    pointer-events: none;
-    object-position: center;
-    height: 100%;
-    z-index: -1;
-  } */
 }
 
 .nav-item__link {
