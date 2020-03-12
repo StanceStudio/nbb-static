@@ -17,7 +17,7 @@
               exact
               :to="{ path: item.link === 'home' ? '/' : `/${item.link}` }"
               @click.native="toggleMenu"
-              class="nav-item__link text-3xl md:text-4xl lg:text-lg lg:p-6 relative inline-block"
+              class="hover:text-pink xl:hover:text-black nav-item__link text-3xl md:text-4xl lg:text-lg lg:p-6 relative inline-block"
               ref="navItemLink"
               @mouseenter.native="navItemMouseover" 
               @mouseleave.native="navItemMouseout">
@@ -41,7 +41,8 @@ export default {
     return {
       menuItems: [],
       showNav: false,
-      isHovering: false
+      isHovering: false,
+      menuItemSize: 130
     };
   },
 
@@ -53,7 +54,7 @@ export default {
     this.$nextTick(() => {
     this.$refs.navItem.forEach((item) => {      
       const w = item.getBoundingClientRect().width;      
-      if (w > 150) {
+      if (w > this.menuItemSize) {
         item.classList.add('nav-item--lg');
       } else {
         item.classList.add('nav-item--sm');
@@ -97,7 +98,7 @@ export default {
 
         let r = Math.random().toString(36).substring(7);
         
-        if (w > 130) {
+        if (w > this.menuItemSize) {
           e.target.style.backgroundImage = `url(${require('~/assets/img/LargeCircle.gif')}?${r}`;
         } else {
           e.target.style.backgroundImage = `url(${require('~/assets/img/MediumCircle.gif')}?${r}`;
@@ -119,13 +120,19 @@ export default {
         const mq = window.matchMedia( "(max-width: 900px)" );
         if (mq.matches) {
           let tl = new TimelineMax();
-          TweenMax.staggerTo('.nav-item__link', .6 , { y: 0, delay: .2, ease: "power3.out"}, .1 );
+          TweenMax.staggerTo('.nav-item__link', .6 , { y: 0, delay: 0, ease: "power3.out"}, .1 );
         }
       }
     },
 
     hideMenuItems() {
-      TweenMax.staggerTo('.nav-item__link', .6, { y: '110%', delay: 0, ease: "power3.out"}, .1 );
+      const _that = this;
+      TweenMax.staggerTo('.nav-item__link', 0, { y: '-110%', delay: 0, ease: "power3.out"}, .1, () => {
+        _that.showNav = false;
+        setTimeout(() => {
+          TweenMax.set('.nav-item__link', { y: '110%' }) 
+        }, 300);
+      })
     },
 
     toggleMenu() {
@@ -148,10 +155,7 @@ export default {
         const mq = window.matchMedia( "(max-width: 900px)" );
         
         if (mq.matches) {
-          this.showNav = false;
-          setTimeout(() => {
-            this.hideMenuItems();
-          }, 200);
+          this.hideMenuItems();
         }
       }
     }

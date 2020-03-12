@@ -1,7 +1,6 @@
 <template>
   <article
-    class="single pt-20 xl:pt-26"
-    :class="{'bg-sand' : type === 'project' || data.template === 'templates/template-art-direction.php'}"> 
+    class="single pt-20 xl:pt-26"> 
     <div class="container">
       <header class="mb-10 md:mb-20">
         <h3 v-if="type === 'project'" class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none inline-block overflow-hidden">
@@ -65,7 +64,10 @@ export default {
   head() {
     return {
       title: `${this.data.title.rendered} - ${this.$store.state.meta.name}`,
-      //meta: [{ description: this.$store.state.meta.description }]
+      //meta: [{ description: this.$store.state.meta.description }],
+      bodyAttrs: {
+        class: [`single-${this.data.type}`, `single-${this.data.slug}`]
+      },
     };
   },
 
@@ -83,13 +85,13 @@ export default {
 
     content() {
       return this.data.acf.content ? this.data.acf.content : [];
-    }
+    },
   },
 
   mounted() {
     const _that = this;
 
-    //console.log('post data --', this.data);
+    console.log('post data --', this.data);
     
     this.$nextTick(this.addListeners);
 
@@ -174,10 +176,15 @@ export default {
 
 <style>
   .single {
-    @apply flex flex-col relative min-h-screen;
+    /* @apply flex flex-col relative min-h-screen; */
+    @apply relative;
   }
 
   .title-item {
     transform: translateY(110%);
+  }
+
+  .single-project, .single-art-direction {
+    @apply bg-sand;
   }
 </style>

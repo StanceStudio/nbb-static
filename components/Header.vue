@@ -13,6 +13,8 @@
 <script>
 import Navigation from '../components/Navigation';
 import Logo from '~/assets/svg/NBBLogoMark.svg?inline';
+import lottie from "lottie-web";
+import animationData from "~/assets/json/HomePage.json";
 
 export default {
   name: "Header",

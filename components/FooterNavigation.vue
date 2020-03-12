@@ -12,8 +12,8 @@
             :to="item.link === 'home' ? '/' : `/${item.link}`"
             class="nav-item__link inline-block">
             {{ item.title }}
-            <div class="underline">
-              <Underline class="text-pink"/>
+            <div class="underline hidden xl:inline-block">
+              <Underline class="text-pink" />
             </div>
           </nuxt-link>
         </li>

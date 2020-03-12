@@ -24,8 +24,8 @@
                       v-html="project.title.rendered"
                       class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase inline-block leading-none">
                       </h2>
-                      <div class="underline">
-                        <Underline class="text-pink"/>
+                      <div class="underline hidden xl:inline-block">
+                        <Underline class="text-pink" />
                       </div>
                       <div
                       v-if="project.acf.featured_images"

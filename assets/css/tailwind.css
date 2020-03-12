@@ -2,12 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-lavender;
+
+  transition: background-color .3s;
+}
+
 a {
   transition: all 0.2s;
+  display: inline;
 }
 
 /** LAYOUT **/
-
 .container {
   @apply px-4;
 
@@ -24,9 +30,10 @@ a {
 }
 
 .wrapper {
-  @apply bg-lavender antialiased font-sans leading-normal tracking-normal flex flex-col w-screen min-h-screen text-black overflow-hidden relative;
+  @apply antialiased font-sans leading-normal tracking-normal flex flex-col w-screen min-h-screen text-black overflow-hidden relative;
 }
 
+/** EDITOR **/
 .wysiwyg {
   a {
     @apply text-pink;
@@ -41,6 +48,7 @@ a {
   @apply text-black;
 }
 
+/** UTILITY **/
 .reveal__container {
   transform: translateY(15%) translateZ(0);
   transition: transform .6s cubic-bezier(.13,.74,.5,.97);
