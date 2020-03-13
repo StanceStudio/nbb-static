@@ -98,13 +98,11 @@
         class="">
           <div
             v-html="section.sh_text_1"
-            class="heading-1 overflow-hidden relative text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none"
-            style="height:100px">
+            class="heading-1 overflow-hidden relative text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none">
           </div>
           <div
             v-html="section.sh_text_2"
-            class="heading-2 overflow-hidden relative text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none"
-            style="height:100px">
+            class="heading-2 overflow-hidden relative text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none">
           </div>
       </div>
 
@@ -188,6 +186,19 @@ export default {
 </style>
 
 <style>
+  .heading-1,
+  .heading-2 {
+    height: 41px!important;
+
+    @screen md {
+      height: 74px!important;
+    }
+
+    @screen lg {
+      height: 100px!important;
+    }
+  }
+
   .heading-item {
     position: absolute!important;
     top: 0!important;
