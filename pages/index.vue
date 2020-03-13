@@ -47,7 +47,7 @@
       </div>
     </section>
 
-    <Sections :sections="page.acf.content" class="container"/>
+    <Sections :content="page.acf.content" class="container"/>
 
     <div class="container">
       <Underline class="w-full"/>
