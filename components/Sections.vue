@@ -152,12 +152,12 @@ export default {
 
       let tl = new TimelineMax()
       tl.staggerTo('.heading-item-1', .6 , { y: 0, delay: 0, ease: "power3.out"}, 1.2 )
-        .staggerTo('.heading-item-1:not(:last-child)', .6, { y: '-110%', ease: "power3.out" }, 1.2, 1.2 );
+        .staggerTo('.heading-item-1:not(:last-child)', .6, { y: '-110%', ease: "power3.out" }, 1, 1 );
 
 
       let tl2 = new TimelineMax();
       tl2.staggerTo('.heading-item-2', .6 , { y: 0, delay: 0, ease: "power3.out"}, 1.2 )
-        .staggerTo('.heading-item-2:not(:last-child)', .6, { y: '-110%', ease: "power3.out" }, 1.2, 1.2 );
+        .staggerTo('.heading-item-2:not(:last-child)', .6, { y: '-110%', ease: "power3.out" }, 1, 1 );
       }
     }
   }
