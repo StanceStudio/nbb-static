@@ -83,7 +83,7 @@ export default {
 
   methods: {
     prevPane() {
-      console.log('prevPane');
+      //console.log('prevPane');
       
       this.$refs.tinySlider.slider.goTo('prev');
     },

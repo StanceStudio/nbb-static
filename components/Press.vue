@@ -3,31 +3,36 @@
     class="single pt-20 xl:pt-26"
     :class="{ready : pageReady}"> 
     <div class="container">
-      <header class="mb-18 md:mb-20">
+      <header class="mb-10 xl:mb-20">
         <h1
           class="title text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-tight"
           v-html="title">
         </h1>
       </header>
 
-      <ul class="min-h-screen">
-        <li
-          v-for="(section, i) in data.acf.press_items"
-          :key="'section-' + i"
-          :data-type="section.acf_fc_layout"
-          class="py-1 xl:py-4">
-          <div
-            class="inline-block"
-            @mousemove="moveImages"
-            @mouseleave="displayImages = false"
-            @mouseenter="projectMouseOver(section)">
-            <a v-if="section.link" :href="section.link" rel="nofollow" target="_blank">
-              <div class="title text-xl sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-none" v-html="section.title"></div>
-            </a>
-            <div v-else class="title inline-block text-xl sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-none" v-html="section.title"></div>
-          </div>
-        </li>
-      </ul>
+      <div class="content pb-12 sm:pb-18 xl:pb-20">
+        <ul class="xl:min-h-screen">
+          <li
+            v-for="(section, i) in data.acf.press_items"
+            :key="'section-' + i"
+            :data-type="section.acf_fc_layout"
+            class="press-item py-1 xl:py-4">
+            <span
+              class="inline-block"
+              @mousemove="moveImages"
+              @mouseleave="displayImages = false"
+              @mouseenter="projectMouseOver(section)">
+              <a v-if="section.link" :href="section.link" rel="nofollow" target="_blank" class="inline-block">
+                <span class="title text-xl sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-none" v-html="section.title"></span>
+              </a>
+              <span v-else class="title inline-block text-xl sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-none" v-html="section.title"></span>
+              <span class="underline hidden xl:block w-full">
+                <Underline class="text-pink w-full"/>
+              </span>
+            </span>
+          </li>
+        </ul>
+      </div>
 
       <transition name="fade">
           <div
@@ -141,3 +146,16 @@ export default {
   }
 };
 </script>
+<style scoped>
+.underline {
+    transition:all .6s cubic-bezier(.13,.74,.5,.97);
+    -webkit-clip-path: inset(0 100% 0 0);
+    clip-path: inset(0 100% 0 0);
+  }
+
+  .press-item:hover {
+    .underline {
+      clip-path: inset(0);
+    }
+  }
+</style>

@@ -4,9 +4,8 @@
             <div class="project-item flex items-center">Spaces <Colon style="width: 0.085em;" class="ml-2"/></div>
         </h2>
         <ul>
-            <template 
-            v-for="project in projects"
-            >
+          <template 
+            v-for="project in projects">
             <li
             :key="project.id"
             v-if="project.id !== exclude"
@@ -24,20 +23,20 @@
                       v-html="project.title.rendered"
                       class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase inline-block leading-none">
                       </h2>
-                      <div class="underline hidden xl:inline-block">
-                        <Underline class="text-pink" />
+                      <div class="underline hidden xl:block">
+                        <Underline class="text-pink w-full"/>
                       </div>
                       <div
                       v-if="project.acf.featured_images"
                       class="flex w-full absolute inset-0">
                       <div
-                          v-for="image in project.acf.featured_images"
-                          :key="image.id"
-                          @mouseenter="showImage(image)"
-                          @mousemove="showImage(image)"
-                          class="flex-grow">
+                        v-for="image in project.acf.featured_images"
+                        :key="image.id"
+                        @mouseenter="showImage(image)"
+                        @mousemove="showImage(image)"
+                        class="flex-grow">
                       </div>
-                      </div>
+                    </div>
                   </div>
                   </nuxt-link>
               </div>

@@ -27,12 +27,15 @@ export default {
     name: 'out-in',
 
     enter(el, done) {       
-      const _that = this; 
+      this.$bus.$emit('page-enter');
+
       let tl = new TimelineMax();
       tl.staggerFrom('.project-item', .6 , { y: '110%', delay: .6, ease: "power3.out"}, .1, "+=0", () => { document.getElementsByClassName('site-footer')[0].style.opacity = '1'; } );
     },
 
     beforeLeave(el) {
+      this.$bus.$emit('page-before-leave');
+
       document.getElementsByClassName('site-footer')[0].style.opacity = '0';
       TweenMax.staggerTo('.project-item', .6 ,{ y: '-110%', delay: 0, ease: "power3.out"}, .1 );
     }

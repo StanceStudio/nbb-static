@@ -2,8 +2,8 @@
   <article
     class="single pt-20 xl:pt-26"> 
     <div class="container">
-      <header class="mb-10 md:mb-20">
-        <h3 v-if="type === 'project'" class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none inline-block overflow-hidden">
+      <header class="mb-10 xl:mb-20">
+        <h3 v-if="type === 'project'" class="overflow-hidden text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none inline-block overflow-hidden">
           <div class="title-item flex items-center">Spaces <Colon style="width: 0.085em;" class="ml-2"/></div>
         </h3>
         <h1
@@ -21,7 +21,7 @@
         <div class="title-item text-lg font-light md:w-1/2" v-html="data.acf.introduction"></div>
       </div>
 
-      <div class="content min-h-screen pb-20">
+      <div class="content min-h-screen pb-12 sm:pb-18 xl:pb-20">
         <transition name="fade">
           <Sections v-if="pageReady" :content="content" />
         </transition>
@@ -91,7 +91,7 @@ export default {
   mounted() {
     const _that = this;
 
-    console.log('post data --', this.data);
+    //console.log('post data --', this.data);
     
     this.$nextTick(this.addListeners);
 

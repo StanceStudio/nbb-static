@@ -41,18 +41,18 @@
 
       <div
         v-else-if="'image_quote' === section.acf_fc_layout"
-        class="xl:flex xl:items-center">
+        class="lg:flex lg:items-center">
         <div
           v-if="section.image.url"
-          class="mb-10 xl:mb-0 xl:w-1/3 mr-auto">
+          class="mb-10 xl:mb-0 lg:w-1/3">
           <div class="lazy">
             <img v-lazy="section.image.url" :alt="section.image.alt" />
           </div>
         </div>
         <div
           v-if="section.quote"
-          class="w-2/4">
-          <blockquote class="font-serif uppercase leading-none text-2xl xl:text-4xl">
+          class="lg:w-1/2 lg:ml-10 xl:ml-20">
+          <blockquote class="font-serif uppercase leading-none text-2xl lg:text-3xl xl:text-4xl">
             <p v-html="section.quote"></p>
             <cite class="not-italic">{{ section.cite }}</cite>
           </blockquote>
@@ -84,7 +84,7 @@
       <div
         v-if="'headline' === section.acf_fc_layout"
         class="flex">
-        <div class="w-12 mt-4 mr-18" >
+        <div class="w-12 mt-4 mr-8 lg:mr-18" >
           <PinkDiamond />
         </div>
         <div
@@ -93,11 +93,28 @@
         </div>
       </div>
 
+      <div
+        v-if="'simplicity_heading' === section.acf_fc_layout"
+        class="">
+          <div
+            v-html="section.sh_text_1"
+            class="heading-1 overflow-hidden relative text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none"
+            style="height:100px">
+          </div>
+          <div
+            v-html="section.sh_text_2"
+            class="heading-2 overflow-hidden relative text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none"
+            style="height:100px">
+          </div>
+      </div>
+
     </section>
   </div>
 </template>
 
 <script>
+import { TimelineMax } from "gsap";
+
 import PinkDiamond from '~/assets/svg/PinkDiamond.svg?inline';
 
 export default {
@@ -114,6 +131,36 @@ export default {
   mixins: {
     filterPostContent: Function
   },
+
+  mounted() {
+    if (process.browser) {
+
+      if (document.querySelectorAll('.heading-1').length) {
+      require('~/assets/js/SplitTextPlugin.js');
+
+      new SplitText(".heading-1", {
+        type      : "lines",
+        linesClass: "heading-item heading-item-1",
+        position  : "absolute"
+      });
+
+      new SplitText(".heading-2", {
+        type      : "lines",
+        linesClass: "heading-item heading-item-2",
+        position  : "absolute"
+      });
+
+      let tl = new TimelineMax()
+      tl.staggerTo('.heading-item-1', .6 , { y: 0, delay: 0, ease: "power3.out"}, 1.2 )
+        .staggerTo('.heading-item-1:not(:last-child)', .6, { y: '-110%', ease: "power3.out" }, 1.2, 1.2 );
+
+
+      let tl2 = new TimelineMax();
+      tl2.staggerTo('.heading-item-2', .6 , { y: 0, delay: 0, ease: "power3.out"}, 1.2 )
+        .staggerTo('.heading-item-2:not(:last-child)', .6, { y: '-110%', ease: "power3.out" }, 1.2, 1.2 );
+      }
+    }
+  }
 };
 </script>
 
@@ -138,4 +185,12 @@ export default {
     @apply w-1/3 pl-10
   }
 }
+</style>
+
+<style>
+  .heading-item {
+    position: absolute!important;
+    top: 0!important;
+    transform: translateY(110%);
+  }
 </style>

@@ -51,7 +51,7 @@
 
     <div class="container">
       <Underline class="w-full"/>
-      <FooterNavigation class="pt-20" />
+      <FooterNavigation class="pt-12 sm:pt-18 xxl:pt-20" />
     </div>
     <Footer />
   </div>
@@ -87,11 +87,19 @@ export default {
   mixins: {
     filterPostContent: Function
   },
+
+  transition: {
+    afterEnter(el) {
+      if (process.browser) {
+        document.body.classList.add('intro-loaded');
+      }
+    }
+  },
   
   head() {
     return {
       bodyAttrs: {
-          class: 'home'
+        class: 'home'
       },
     }
   },
@@ -119,11 +127,10 @@ export default {
 
   mounted: function() {
     const _that = this;
-    
+
     if (process.browser) {
       require('~/assets/js/SplitTextPlugin.js');
 
-  
       new SplitText(".reveal", {
         type: "lines",
         linesClass: "overflow-hidden reveal__container reveal__container--++"
@@ -168,7 +175,7 @@ export default {
   watch: {
     intersected() {
       this.elementsInView = true;
-    }
+    },
   }
 };
 </script>

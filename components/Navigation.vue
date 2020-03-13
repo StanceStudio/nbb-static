@@ -4,7 +4,7 @@
     aria-label="Main"
     class="ml-auto xl:-mr-6">
       <ul
-        class="nav flex flex-col lg:flex-row lg:items-center font-serif uppercase absolute h-screen lg:h-auto lg:relative inset-0 lg:inset-auto z-10 bg-green lg:bg-transparent pt-18 lg:pt-0 opacity-0 invisible lg:visible lg:opacity-100 px-4 lg:px-0"
+        class="nav flex flex-col lg:flex-row lg:items-center font-serif uppercase absolute h-screen lg:h-auto lg:relative inset-0 lg:inset-auto z-10 bg-lightgreen lg:bg-transparent pt-18 lg:pt-0 opacity-0 invisible lg:visible lg:opacity-100 px-4 lg:px-0"
         :class="{'nav--visible' : showNav}">
         <li
           v-for="(item) in menuItems"
@@ -22,12 +22,12 @@
               @mouseenter.native="navItemMouseover" 
               @mouseleave.native="navItemMouseout">
               {{ item.title }}
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="" class="hidden"/>
+              <!-- <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="" class="hidden"/> -->
             </nuxt-link>
           <!-- </span> -->
         </li>
       </ul>
-    <button @click.prevent="toggleMenu" type="button" class="block lg:hidden uppercase font-light text-lg relative z-20">{{ showNav ? 'Close' : 'Menu' }}</button>
+    <button @click.prevent="toggleMenu" type="button" class="outline-none block lg:hidden uppercase font-light text-lg relative z-20">{{ showNav ? 'Close' : 'Menu' }}</button>
   </nav>
 </template>
 
@@ -52,21 +52,21 @@ export default {
 
   updated() {
     this.$nextTick(() => {
-    this.$refs.navItem.forEach((item) => {      
-      const w = item.getBoundingClientRect().width;      
-      if (w > this.menuItemSize) {
-        item.classList.add('nav-item--lg');
-      } else {
-        item.classList.add('nav-item--sm');
+      if(this.$refs.navItem) {
+      this.$refs.navItem.forEach((item) => {      
+        const w = item.getBoundingClientRect().width;      
+        if (w > this.menuItemSize) {
+          item.classList.add('nav-item--lg');
+        } else {
+          item.classList.add('nav-item--sm');
+        }
+      });
       }
-    })
     });
   },
   
   methods: {
     async fetchNavigation () {
-        // Dynamically import the batch of dependencies we need for
-        // fetching and displaying the navigation menu.
         const [
             { default: NavigationItem },
             { data: navigation },
@@ -79,40 +79,26 @@ export default {
     },
 
     navItemMouseout(e) {
-      //console.log(e);
-      let img = e.target.getElementsByTagName('img')[0];
-     // console.log(img);
       e.target.style.backgroundImage = '';
-      if (img) {
-        img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
-      }
     },
 
     navItemMouseover(e) {
-     // console.log(e);
-      //let img = e.target.getElementsByTagName('img')[0];
-      //console.log(img);
-      if (e.target) {
-        const w = e.target.getBoundingClientRect().width;
-        //console.log(w);
-
-        let r = Math.random().toString(36).substring(7);
+      const mq = window.matchMedia( "(min-width: 900px)" );
         
-        if (w > this.menuItemSize) {
-          e.target.style.backgroundImage = `url(${require('~/assets/img/LargeCircle.gif')}?${r}`;
-        } else {
-          e.target.style.backgroundImage = `url(${require('~/assets/img/MediumCircle.gif')}?${r}`;
+        if (mq.matches) {
+        if (e.target) {
+          const w = e.target.getBoundingClientRect().width;
+          //console.log(w);
+
+          let r = Math.random().toString(36).substring(7);
+          
+          if (w > this.menuItemSize) {
+            e.target.style.backgroundImage = `url(${require('~/assets/img/LargeCircle.gif')}?${r}`;
+          } else {
+            e.target.style.backgroundImage = `url(${require('~/assets/img/MediumCircle.gif')}?${r}`;
+          }
         }
       }
-
-      // if (img) {
-      //   const w = img.getBoundingClientRect().width;
-      //   if (w > 130) {
-      //     img.src = require('~/assets/img/LargeCircle.gif');
-      //   } else {
-      //     img.src = require('~/assets/img/MediumCircle.gif');
-      //   }
-      // }
     },
 
     showMenuItems() {
@@ -120,17 +106,17 @@ export default {
         const mq = window.matchMedia( "(max-width: 900px)" );
         if (mq.matches) {
           let tl = new TimelineMax();
-          TweenMax.staggerTo('.nav-item__link', .6 , { y: 0, delay: 0, ease: "power3.out"}, .1 );
+          TweenMax.staggerTo('.nav .nav-item__link', .6 , { y: 0, delay: 0, ease: "power3.out"}, .1 );
         }
       }
     },
 
     hideMenuItems() {
       const _that = this;
-      TweenMax.staggerTo('.nav-item__link', 0, { y: '-110%', delay: 0, ease: "power3.out"}, .1, () => {
+      TweenMax.staggerTo('.nav .nav-item__link', 0, { y: '-110%', delay: 0, ease: "power3.out"}, .1, () => {
         _that.showNav = false;
         setTimeout(() => {
-          TweenMax.set('.nav-item__link', { y: '110%' }) 
+          TweenMax.set('.nav  .nav-item__link', { y: '110%' }) 
         }, 300);
       })
     },

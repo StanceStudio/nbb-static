@@ -4,7 +4,7 @@
     :class="{ready : pageReady}"
 > 
     <div class="container">
-      <header class="mb-20">
+      <header class="mb-10 xl:mb-20">
         <h1
           class="title text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-tight"
           v-html="title"
@@ -12,9 +12,9 @@
         </h1>
       </header>
 
-      <div class="min-h-screen">
+      <div class="xl:min-h-screen">
         <transition name="fade">
-          <div v-show="pageReady" class="md:flex pb-20">
+          <div v-show="pageReady" class="content pb-12 md:flex sm:pb-18 xl:pb-20">
             <div class="md:w-5/12 mb-10 md:mb-0">
               <img :src="data.acf.image.url" alt="">
             </div>

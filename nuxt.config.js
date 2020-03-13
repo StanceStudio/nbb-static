@@ -27,6 +27,28 @@ export default {
     color: '#ff40b4'
   },
 
+  pageTransition: {
+    enter () {
+      this.$bus.$emit('page-enter')
+    },
+    
+    beforeEnter () {
+      this.$bus.$emit('page-before-enter')
+    },
+
+    afterEnter () {
+      this.$bus.$emit('page-after-enter')
+    },
+
+    beforeLeave () {
+      this.$bus.$emit('page-before-leave')
+    },
+
+    leaveCancelled (){
+      this.$bus.$emit('page-leave-cancelled')
+    }
+  },
+
   css: [
     '~/assets/css/fonts.css',
   ],
@@ -35,7 +57,8 @@ export default {
     { src: '~/plugins/vue-lazyload', ssr: false },
     { src: '~/plugins/vue-scrollto', ssr: false },
     { src: '~/plugins/mixins' },
-    { src: '~/plugins/axios' }
+    { src: '~/plugins/axios' },
+    { src: '~/plugins/bus' }
   ],
 
   buildModules: [],
