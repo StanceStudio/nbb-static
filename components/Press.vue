@@ -23,7 +23,7 @@
               @mouseleave="displayImages = false"
               @mouseenter="projectMouseOver(section)">
               <a v-if="section.link" :href="section.link" rel="nofollow" target="_blank" class="inline-block">
-                <span class="title text-xl sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-none" v-html="section.title"></span>
+                <span class="title text-xl sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-none">{{ section.title }}</span>
               </a>
               <span v-else class="title inline-block text-xl sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-none" v-html="section.title"></span>
               <span class="underline hidden xl:block w-full">
@@ -41,8 +41,7 @@
             class="hidden xl:block hot-images fixed z-50 pointer-events-none">
             <div
               v-if="heading"
-              class="uppercase mb-3 text-pink text-lg xxl:text-xl"
-              v-html="heading"></div>
+              class="uppercase mb-3 text-pink text-lg xxl:text-xl"><ExternalLink class="inline w-5 mr-2" /> {{ heading }}</div>
             <img :src="imageSrc"  alt="" />
           </div>
       </transition>
@@ -56,6 +55,7 @@
 <script>
 import { TweenMax, TimelineMax } from "gsap";
 import Underline from '~/assets/svg/Underline.svg?inline';
+import ExternalLink from '~/assets/svg/ExternalLink.svg?inline';
 import Footer from '~/components/Footer.vue';
 import FooterNavigation from '~/components/FooterNavigation.vue';
 
@@ -67,6 +67,7 @@ export default {
 
   components: {
     Underline,
+    ExternalLink,
     FooterNavigation,
     Footer,
   },
