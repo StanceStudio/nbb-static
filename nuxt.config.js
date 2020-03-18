@@ -58,7 +58,7 @@ export default {
     { src: '~/plugins/vue-scrollto', ssr: false },
     { src: '~/plugins/mixins' },
     { src: '~/plugins/axios' },
-    { src: '~/plugins/bus' }
+    { src: '~/plugins/bus' },
   ],
 
   buildModules: [],

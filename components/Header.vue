@@ -38,31 +38,36 @@ export default {
 
     this.animation.setSpeed(2.25);
 
-    this.$bus.$on('page-before-leave', () => {
-      //console.log('page-before-leave');
+    this.$router.beforeEach((to, from, next) => {
+      if (from.path !== to.path) {
+        _that.animation.removeEventListener( 'loopComplete', _that.loopCompleteHandler );
 
-      _that.animation.removeEventListener( 'loopComplete', this.loopCompleteHandler );
+        if (_that.animation.isPaused) {
+          _that.animation.goToAndStop(1);
+            _that.animation.play();
+        }
+      }
 
-      if (_that.animation.isPaused) {
-         _that.animation.goToAndStop(1);
-          _that.animation.play();
-     }
+      next()
     });
 
-    this.$bus.$on('page-enter', () => {
-      //console.log('page-enter');
-      _that.animation.addEventListener( 'loopComplete', this.loopCompleteHandler );
-    });
+    // this.$bus.$on('page-enter', () => {
+    //   //console.log('page-enter');
+    //   _that.animation.addEventListener( 'loopComplete', _that.loopCompleteHandler );
+    // })
 
-    this.$bus.$on('page-leave-cancelled', () => {
-      _that.animation.addEventListener( 'loopComplete', this.loopCompleteHandler );
-    });
+    window.onNuxtReady((app) => {
+      app.$nuxt.$on('routeChanged', (to, from) => {
+        //console.log('routeChanged');
+        _that.animation.addEventListener( 'loopComplete', _that.loopCompleteHandler );
+      })
+    })
   },
 
   methods: {
     loopCompleteHandler() {
-        this.animation.removeEventListener( 'loopComplete', this.loopCompleteHandler );
-        this.animation.stop();
+      this.animation.removeEventListener( 'loopComplete', this.loopCompleteHandler );
+      this.animation.stop();
     }
   },
 

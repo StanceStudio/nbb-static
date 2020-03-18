@@ -11,8 +11,7 @@
         </h1>
         <h2
           v-if="data.acf.heading"
-          class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none inline-block overflow-hidden text-pink">
-          <div class="title-item" v-html="data.acf.heading"></div>
+          class="title text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none inline-block text-pink" v-html="data.acf.heading">
         </h2>
       </header>
       <div

@@ -1,8 +1,11 @@
 <template>
     <div>
-        <h2 class="mb-10 xl:mb-18 text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none inline-block overflow-hidden">
-            <div class="project-item flex items-center">Spaces <Colon style="width: 0.085em;" class="ml-2"/></div>
+      <h2 class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none overflow-hidden">
+            <div class="project-item flex items-center">Interiors <Colon style="width: 0.085em;" class="ml-2"/></div>
         </h2>
+        <h3 class="mb-10 text-pink xl:mb-18 text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none overflow-hidden">
+            <div class="project-item">Spaces</div>
+        </h3>
         <ul>
           <template 
             v-for="project in projects">
@@ -50,7 +53,8 @@
             <div
                 v-show="displayImages"
                 ref="images"
-                class="hot-images hidden xl:block absolute z-50 pointer-events-none">
+                class="hot-images hidden xl:block absolute z-50 pointer-events-none"
+                :class="`hot-images--${imageOrientation}`">
               <div
                 v-if="heading"
                 class="uppercase mb-3 font-light text-white text-lg"
@@ -82,6 +86,7 @@ export default {
   data() {
     return {
       imageSrc: '',
+      imageOrientation: '',
       displayImages: false,
       heading: '',
     }
@@ -131,8 +136,10 @@ export default {
     },
 
     showImage(image) {
+      
       if (image) {
         this.imageSrc = image.url;
+        this.imageOrientation = image.height > image.width ? 'portait' : 'landscape';
         setTimeout(() => {
           this.displayImages = true;
         }, 150);
@@ -148,12 +155,12 @@ export default {
 </script>
 
 <style scoped>    
-    .page-leave-active {
-        .hot-images,
-        .underline {
-            opacity: 0;
-        }
-    }
+  .page-leave-active {
+      .hot-images,
+      .underline {
+        opacity: 0;
+      }
+  }
         
   .underline {
     transition:all .6s cubic-bezier(.13,.74,.5,.97);

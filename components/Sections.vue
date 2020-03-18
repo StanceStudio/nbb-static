@@ -1,12 +1,11 @@
 <template>
-  <div>
+  <div class="sections">
     <section
       v-for="(section, i) in content"
       :key="'section-' + i"
       :data-type="section.acf_fc_layout"
       class="py-10 xl:py-14">
-      <div
-        class="flex">
+      
         <div
           v-if="'text' === section.acf_fc_layout"
           class="font-light text-lg xxl:text-xl xl:w-1/2"
@@ -31,7 +30,7 @@
             </nuxt-link>
           </div>
         </div>
-      </div>
+     
 
       <div
         v-if="'image' === section.acf_fc_layout"
@@ -106,13 +105,14 @@
           </div>
       </div>
 
+      <Simplicity v-if="'simplicity' === section.acf_fc_layout" :section="section" />
+
     </section>
   </div>
 </template>
 
 <script>
-import { TimelineMax } from "gsap";
-
+import Simplicity from '~/components/Simplicity.vue';
 import PinkDiamond from '~/assets/svg/PinkDiamond.svg?inline';
 
 export default {
@@ -120,6 +120,7 @@ export default {
 
   components: {
     PinkDiamond,
+    Simplicity,
   },
 
   props: {
@@ -129,36 +130,6 @@ export default {
   mixins: {
     filterPostContent: Function
   },
-
-  mounted() {
-    if (process.browser) {
-
-      if (document.querySelectorAll('.heading-1').length) {
-      require('~/assets/js/SplitTextPlugin.js');
-
-      new SplitText(".heading-1", {
-        type      : "lines",
-        linesClass: "heading-item heading-item-1",
-        position  : "absolute"
-      });
-
-      new SplitText(".heading-2", {
-        type      : "lines",
-        linesClass: "heading-item heading-item-2",
-        position  : "absolute"
-      });
-
-      let tl = new TimelineMax()
-      tl.staggerTo('.heading-item-1', .6 , { y: 0, delay: 0, ease: "power3.out"}, 1.2 )
-        .staggerTo('.heading-item-1:not(:last-child)', .6, { y: '-110%', ease: "power3.out" }, 1, 1 );
-
-
-      let tl2 = new TimelineMax();
-      tl2.staggerTo('.heading-item-2', .6 , { y: 0, delay: 0, ease: "power3.out"}, 1.2 )
-        .staggerTo('.heading-item-2:not(:last-child)', .6, { y: '-110%', ease: "power3.out" }, 1, 1 );
-      }
-    }
-  }
 };
 </script>
 
@@ -183,25 +154,4 @@ export default {
     @apply w-1/3 pl-10
   }
 }
-</style>
-
-<style>
-  .heading-1,
-  .heading-2 {
-    height: 41px!important;
-
-    @screen md {
-      height: 74px!important;
-    }
-
-    @screen lg {
-      height: 100px!important;
-    }
-  }
-
-  .heading-item {
-    position: absolute!important;
-    top: 0!important;
-    transform: translateY(110%);
-  }
 </style>

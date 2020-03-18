@@ -26,11 +26,11 @@ export default {
   transition: {
     name: 'out-in',
 
-    enter(el, done) {       
+    enter(el) {
       this.$bus.$emit('page-enter');
-
+      
       let tl = new TimelineMax();
-      tl.staggerFrom('.project-item', .6 , { y: '110%', delay: .6, ease: "power3.out"}, .1, "+=0", () => { document.getElementsByClassName('site-footer')[0].style.opacity = '1'; } );
+      tl.staggerFrom('.project-item', .6 , {y: '110%', delay: 1.5, ease: "power3.out"}, .1, "+=0", () => { document.getElementsByClassName('site-footer')[0].style.opacity = '1'; });
     },
 
     beforeLeave(el) {
@@ -44,11 +44,20 @@ export default {
   head() {
     return {
       title: `Projects - ${this.$store.state.meta.name}`,
-      meta: [{ description: this.$store.state.meta.description }]
+      meta: [{ description: this.$store.state.meta.description }],
+      bodyAttrs: {
+        class: 'projects'
+      }
     };
   },
 };
 </script>
+
+<style>
+.projects .wrapper {
+  @apply overflow-hidden;
+}
+</style>
 
 <style scoped>
 .out-in-enter-active,
@@ -73,9 +82,16 @@ export default {
 .page-leave-active,
 .out-in-enter-active {
   transition: transform 0.6s cubic-bezier(.13,.74,.5,.97), opacity 0.6s cubic-bezier(.13,.74,.5,.97);
+  transition-delay: .6s;
+
 }
 
 .page-leave-active {
-  transition-delay: .8s;
+  transition-delay: .6s;
+}
+
+.out-in-leave-active {
+  transition: opacity 0.4s cubic-bezier(.13,.74,.5,.97);
+  transition-duration: 2s;
 }
 </style>

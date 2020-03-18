@@ -30,7 +30,7 @@ a {
 }
 
 .wrapper {
-  @apply antialiased font-sans leading-normal tracking-normal flex flex-col w-screen min-h-screen text-black overflow-hidden relative;
+  @apply antialiased font-sans leading-normal tracking-normal flex flex-col w-screen min-h-screen text-black relative;
 }
 
 /** EDITOR **/
@@ -124,7 +124,7 @@ a {
 
 .fade-in {
   opacity: 0;
-  transition: opacity .5s cubic-bezier(.13,.74,.5,.97);
+  transition: opacity 1.2s cubic-bezier(.13,.74,.5,.97);
 }
 
 .fade-in.show {
@@ -133,7 +133,7 @@ a {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .5s cubic-bezier(.13,.74,.5,.97);
+  transition: opacity 1.2s cubic-bezier(.13,.74,.5,.97);
 }
 
 .fade-enter,
@@ -159,7 +159,7 @@ a {
     backface-visibility: hidden;
     height: 100%;
     opacity: 0;
-    transition: opacity 0.5s cubic-bezier(.13,.74,.5,.97);
+    transition: opacity 1s cubic-bezier(.13,.74,.5,.97);
     width: 100%;
   }
 
@@ -204,7 +204,7 @@ a {
   }
 
 .page-enter-active, .page-leave-active {
-  transition: opacity .15s ease-in-out;
+  transition: opacity .5s ease-in-out;
 }
 
 .page-enter-active, .page-leave-active {
@@ -214,9 +214,9 @@ a {
 .hot-images {
   @apply ml-3;
 
-  width: 18rem;
+  width: 16rem;
+}
 
-  @screen xl {
-    width: 22rem;
-  }
+.hot-images--landscape {
+  width: 22rem;
 }

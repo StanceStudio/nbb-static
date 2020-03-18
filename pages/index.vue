@@ -199,9 +199,9 @@ export default {
   transition-delay: 0.6s;
 }
 
-.home .site-header {
+/* .home .site-header {
   transition-delay: 1.2s;
-}
+} */
 
 .intro--loading * {
   cursor: wait;

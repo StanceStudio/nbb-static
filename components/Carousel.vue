@@ -17,7 +17,7 @@
           :key="slide.id"
           class="carousel__slide"
         >
-          <div class="carousel__slide-inner" :key="slide.id" v-html="slide.elem"></div>
+          <div class="carousel__slide-inner" :key="slide.id"><img :src="slide.url" alt=""></div>
         </div>
     </tinySlider>
     <div class="carousel__nav" v-if="slides.length > 1">
@@ -36,6 +36,10 @@ export default {
     defaultIndex: {
       default: 0,
       type: Number
+    },
+    slides: {
+      default: [],
+      type: Array
     }
   },
 
@@ -45,22 +49,22 @@ export default {
 
   data() {
     return {
-      slides      : [],
+      //      : [],
       direction   : '',
       carousel    : '',
       currentSlide: 0,
     };
   },
 
-  created() {
-    this.$slots.default.forEach((tab, idx) => {
-      this.slides.push({
-        id: idx,
-        title: tab.data.attrs.title,
-        elem: tab.data.domProps.innerHTML
-      });
-    });
-  },
+  // created() {
+  //   this.$slots.default.forEach((tab, idx) => {
+  //     this.slides.push({
+  //       id: idx,
+  //       title: tab.data.attrs.title,
+  //       elem: tab.data.domProps.innerHTML
+  //     });
+  //   });
+  // },
 
   mounted() {
     const _that = this;
@@ -95,7 +99,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped>
 @import '~tiny-slider/src/tiny-slider';
 
 .carousel {
