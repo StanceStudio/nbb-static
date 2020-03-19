@@ -182,26 +182,26 @@ a {
   position: relative;
 
   span {
-      display: block;
-    }
-  
-    svg {
-      display: block;
-      width: 40px;
-      height: 40px;
-      position: relative;
-      margin: auto;
-    }
-  
-    div {
-      bottom: -26px;
-      font-size: 14px;
-      left: 0;
-      position: absolute;
-      text-align: center;
-      width: 100%;
-    }
+    display: block;
   }
+
+  svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    margin: auto;
+  }
+
+  div {
+    bottom: -26px;
+    font-size: 14px;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+  }
+}
 
 .page-enter-active, .page-leave-active {
   transition: opacity .5s ease-in-out;
@@ -220,3 +220,11 @@ a {
 .hot-images--landscape {
   width: 22rem;
 }
+
+.hot-images--ob {
+  transform: translateY(-100%);
+}
+
+/* .hot-images--or {
+  transform: translateX(-100%);
+} */

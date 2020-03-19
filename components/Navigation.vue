@@ -11,8 +11,6 @@
           :key="item.id"
           class="nav-item overflow-hidden leading-tight"
           ref="navItem">
-          <!-- <span
-            class="inline-block"> -->
             <nuxt-link
               exact
               :to="{ path: item.link === 'home' ? '/' : `/${item.link}` }"
@@ -22,9 +20,7 @@
               @mouseenter.native="navItemMouseover" 
               @mouseleave.native="navItemMouseout">
               {{ item.title }}
-              <!-- <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="" class="hidden"/> -->
             </nuxt-link>
-          <!-- </span> -->
         </li>
       </ul>
     <button @click.prevent="toggleMenu" type="button" class="outline-none block lg:hidden uppercase font-light text-lg relative z-20">{{ showNav ? 'Close' : 'Menu' }}</button>
@@ -53,14 +49,14 @@ export default {
   updated() {
     this.$nextTick(() => {
       if(this.$refs.navItem) {
-      this.$refs.navItem.forEach((item) => {      
-        const w = item.getBoundingClientRect().width;      
-        if (w > this.menuItemSize) {
-          item.classList.add('nav-item--lg');
-        } else {
-          item.classList.add('nav-item--sm');
-        }
-      });
+        this.$refs.navItem.forEach((item) => {      
+          const w = item.getBoundingClientRect().width;      
+          if (w > this.menuItemSize) {
+            item.classList.add('nav-item--lg');
+          } else {
+            item.classList.add('nav-item--sm');
+          }
+        });
       }
     });
   },
@@ -88,8 +84,6 @@ export default {
         if (mq.matches) {
         if (e.target) {
           const w = e.target.getBoundingClientRect().width;
-          //console.log(w);
-
           let r = Math.random().toString(36).substring(7);
           
           if (w > this.menuItemSize) {
@@ -106,17 +100,17 @@ export default {
         const mq = window.matchMedia( "(max-width: 900px)" );
         if (mq.matches) {
           let tl = new TimelineMax();
-          TweenMax.staggerTo('.nav .nav-item__link', .6 , { y: 0, delay: 0, ease: "power3.out"}, .1 );
+          TweenMax.staggerTo('.nav .nav-item__link', .6, {y: 0, delay: 0, ease: "power3.out"}, .1);
         }
       }
     },
 
     hideMenuItems() {
       const _that = this;
-      TweenMax.staggerTo('.nav .nav-item__link', 0, { y: '-110%', delay: 0, ease: "power3.out"}, .1, () => {
+      TweenMax.staggerTo('.nav .nav-item__link', 0, {y: '-110%', delay: 0, ease: "power3.out"}, .1, () => {
         _that.showNav = false;
         setTimeout(() => {
-          TweenMax.set('.nav  .nav-item__link', { y: '110%' }) 
+          TweenMax.set('.nav  .nav-item__link', {y: '110%'}) 
         }, 300);
       })
     },

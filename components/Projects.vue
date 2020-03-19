@@ -54,7 +54,7 @@
                 v-show="displayImages"
                 ref="images"
                 class="hot-images hidden xl:block absolute z-50 pointer-events-none"
-                :class="`hot-images--${imageOrientation}`">
+                :class="[`hot-images--${imageOrientation}`, {'hot-images--or': imagesOutRight, 'hot-images--ob': imagesOutBottom}]">
               <div
                 v-if="heading"
                 class="uppercase mb-3 font-light text-white text-lg"
@@ -89,6 +89,8 @@ export default {
       imageOrientation: '',
       displayImages: false,
       heading: '',
+      imagesOutRight: false,
+      imagesOutBottom: false,
     }
   },
 
@@ -99,16 +101,6 @@ export default {
   },
 
   methods: {
-    async fetchProjects() {
-        if (!this.$store.state.projects) {
-            let projects = await this.$axios.get(
-                `${process.env.wpAPI}/wp/v2/projects?per_page=100`
-            );
-
-            this.$store.commit('setProjects', projects.data);
-        }
-    },
-
     showItems() {
       let tl = new TimelineMax();
       tl.staggerFrom('.project-item', .6 , { y: '110%', delay: .6, ease: "power3.out"}, .1 );
@@ -119,12 +111,19 @@ export default {
     },
 
     hideImages() {
+      //this.checkImageBounding();
+
       setTimeout(() => {
         this.displayImages = false;
       }, 200);
     },
 
     moveImages(e) {
+      //const rect = this.$refs.images.getBoundingClientRect();
+
+      // this.imagesOutRight = (rect.right > (window.innerWidth || document.documentElement.clientWidth));
+      // this.imagesOutBottom = (rect.bottom > (window.innerHeight || document.documentElement.clientHeight));
+    
       if (this.$refs.images) {
         TweenMax.to(this.$refs.images, 0.3, {
           css: {
@@ -136,7 +135,6 @@ export default {
     },
 
     showImage(image) {
-      
       if (image) {
         this.imageSrc = image.url;
         this.imageOrientation = image.height > image.width ? 'portait' : 'landscape';
@@ -149,8 +147,29 @@ export default {
     projectMouseEnter(project, e) {
       this.heading = project.acf.heading;
       this.moveImages(e);
+      //this.checkImageBounding();
+      //setTimeout(this.checkImageBounding(), 500);
     },
+
+    checkImageBounding() {
+      if (this.$refs.images) {
+        const rect = this.$refs.images.getBoundingClientRect();
+        this.imagesOutRight = (rect.right > (window.innerWidth || document.documentElement.clientWidth));
+        this.imagesOutBottom = (rect.bottom > (window.innerHeight || document.documentElement.clientHeight));
+
+        console.log('this.imagesOutRight',this.imagesOutRight);
+        console.log('this.imagesOutBottom',this.imagesOutBottom);
+      }
+    }
   },
+
+  watch: {
+    imageSrc() {
+      this.$nextTick(() => {
+        this.checkImageBounding();
+    });
+  }
+  }
 };
 </script>
 

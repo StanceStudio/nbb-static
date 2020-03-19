@@ -136,22 +136,38 @@ export default {
 
 <style scoped>
 .small_large {
+  > div {
+    @apply w-1/2 pl-10;
+  }
+
   > div:first-child {
-    @apply w-1/3 pr-10
+    @screen xl {
+      @apply w-1/3 pr-10
+    }
   }
 
   > div:nth-child(2) {
-    @apply w-2/3
+    @screen xl {
+      @apply w-2/3
+    }
   }
 }
 
 .large_small {
+  > div {
+    @apply w-1/2 pl-10;
+  }
+
   > div:first-child {
-    @apply w-2/3
+    @screen xl {
+      @apply w-2/3
+    }
   }
 
   > div:nth-child(2) {
-    @apply w-1/3 pl-10
+    @screen xl {
+      @apply w-1/3 pl-10
+    }
   }
 }
 </style>
