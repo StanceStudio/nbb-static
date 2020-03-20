@@ -145,6 +145,7 @@ export default {
 
     projectMouseOver(project) {
       this.heading = project.date ? project.date : '';
+      this.link = project.link ? project.link : '';
       this.showImage(project.image);
     },
   }
