@@ -14,7 +14,7 @@
             v-if="project.id !== exclude"
             class="overflow-hidden"
             >
-              <div class="project-item">
+              <div class="project-item underline-reveal">
                   <nuxt-link
                   :to="`/projects/${project.slug}`"
                   class="inline-block relative">
@@ -48,20 +48,19 @@
             </template>
         </ul>
 
-        <transition name="move-up">
+        <!-- <transition name="move-up" duration="300"> -->
             <div
-                v-show="displayImages"
                 ref="images"
                 class="hot-images hidden xl:block absolute z-50 pointer-events-none"
-                :class="[`hot-images--${imageOrientation}`, {'hot-images--or': imagesOutRight, 'hot-images--ob': imagesOutBottom}]">
+                :class="[`hot-images--${imageOrientation}`, displayImages ? 'opacity-100' : 'opacity-0', {'hot-images--or': imagesOutRight, 'hot-images--ob': imagesOutBottom }]">
               <div
                 v-if="heading"
                 class="uppercase mb-3 font-light text-white text-lg"
                 v-html="heading">
               </div>
-              <img :src="imageSrc"  alt="" />
+              <img :src="imageSrc"  alt="" ref="image"/>
             </div>
-        </transition>
+        <!-- </transition> -->
     </div>
 </template>
 
@@ -84,6 +83,7 @@ export default {
 
   data() {
     return {
+      image: '',
       imageSrc: '',
       imageOrientation: '',
       displayImages: false,
@@ -111,7 +111,6 @@ export default {
 
     hideImages() {
       //this.checkImageBounding();
-
       setTimeout(() => {
         this.displayImages = false;
       }, 200);
@@ -135,11 +134,15 @@ export default {
 
     showImage(image) {
       if (image) {
+        this.image = image;
         this.imageSrc = image.url;
-        this.imageOrientation = image.height > image.width ? 'portait' : 'landscape';
+        //this.displayImages = true;
         setTimeout(() => {
           this.displayImages = true;
         }, 150);
+      } else {
+        this.image = '';
+        this.imageSrc = '';
       }
     },
 
@@ -156,39 +159,25 @@ export default {
         this.imagesOutRight = (rect.right > (window.innerWidth || document.documentElement.clientWidth));
         this.imagesOutBottom = (rect.bottom > (window.innerHeight || document.documentElement.clientHeight));
 
-        console.log('this.imagesOutRight',this.imagesOutRight);
-        console.log('this.imagesOutBottom',this.imagesOutBottom);
+        // console.log(rect.bottom);
+        // console.log(this.image);
+        // console.log(window.innerHeight || document.documentElement.clientHeight);
+        //console.log('from', from);
+
+        //console.log('this.imagesOutRight',this.imagesOutRight);
+        console.log('this.imagesOutBottom', this.imagesOutBottom);
       }
     }
   },
 
   watch: {
-    imageSrc() {
+    image(to, from) {
+      this.checkImageBounding();
+      this.imageOrientation = to.height > to.width ? 'portait' : 'landscape';
       this.$nextTick(() => {
         this.checkImageBounding();
-    });
-  }
+      });
+    }
   }
 };
 </script>
-
-<style scoped>    
-  /* .page-leave-active {
-      .hot-images,
-      .underline {
-        opacity: 0;
-      }
-  } */
-        
-  .underline {
-    transition:all .6s cubic-bezier(.13,.74,.5,.97);
-    -webkit-clip-path: inset(0 100% 0 0);
-    clip-path: inset(0 100% 0 0);
-  }
-
-  .project-item:hover {
-    .underline {
-      clip-path: inset(0);
-    }
-  }
-</style>

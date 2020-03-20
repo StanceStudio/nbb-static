@@ -4,11 +4,14 @@
         <div class="xl:-ml-20">
           <nuxt-link
             :to="`/projects/${section.project[0].post_name}`"
-            class="hover:text-pink">
+            class="hover:text-pink inline-block underline-reveal">
             <h3 class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none text-pink">Interiors</h3>
             <h2
                 class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none">
                   {{ section.project[0].post_title }}
+                <div class="underline hidden xl:block">
+                  <Underline class="text-pink w-full"/>
+                </div>
             </h2>
           </nuxt-link>
         </div>

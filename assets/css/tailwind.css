@@ -228,3 +228,23 @@ a {
 /* .hot-images--or {
   transform: translateX(-100%);
 } */
+
+.underline {
+  transition:all .6s cubic-bezier(.13,.74,.5,.97);
+  -webkit-clip-path: inset(0 100% 0 0);
+  clip-path: inset(0 100% 0 0);
+}
+
+.underline-reveal:hover {
+  .underline {
+    clip-path: inset(0);
+  }
+}
+
+.out-in-leave-active,
+.page-leave-active {
+  .hot-images,
+  .underline {
+    opacity: 0!important;
+  }
+}

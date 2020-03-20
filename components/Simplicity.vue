@@ -11,9 +11,10 @@
                 <div
                   v-for="(text, i) in splitText(section.s_text_1)"
                   :key="'text-' + i"
-                  class="heading-item heading-item-1"
+                  class="heading-item heading-item-1 w-full flex"
                   :class="'heading-item--' + i">
                   {{ text }}
+                  <Dash class="dash ml-4 xl:ml-6" />
                 </div>
             </div>
             <div
@@ -35,7 +36,7 @@
 
 <script>
 import { TimelineMax } from "gsap";
-import Underline from '~/assets/svg/Underline.svg?inline';
+import Dash from '~/assets/svg/Dash.svg?inline';
 
 export default {
   name: "Simplicity",
@@ -45,7 +46,7 @@ export default {
     },
 
     components: {
-        Underline
+        Dash
     },
 
     data() {
@@ -70,8 +71,6 @@ export default {
 
       window.addEventListener("scroll", this.handleScroll);
     }
-
-    //this.calcHeadingWidths();
   },
 
   methods: {
@@ -160,5 +159,14 @@ export default {
     position: absolute!important;
     top: 0!important;
     transform: translateY(110%);
+  }
+</style>
+<style>
+  .dash {
+    width:8rem;
+
+    @screen xl {
+      width:18rem;
+    }
   }
 </style>
