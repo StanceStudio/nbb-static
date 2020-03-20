@@ -47,7 +47,7 @@
       </div>
     </section>
 
-    <Sections :content="page.acf.content" class="container"/>
+    <Sections v-if="page.acf.content" :content="page.acf.content" class="container"/>
 
     <div class="container">
       <Underline class="w-full"/>

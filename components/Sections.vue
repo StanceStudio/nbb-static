@@ -50,7 +50,8 @@
         </div>
         <div
           v-if="section.quote"
-          class="lg:w-1/2 lg:ml-10 xl:ml-20">
+          class="lg:w-1/2"
+          :class="{'lg:ml-10 xl:ml-20': section.image.url}">
           <blockquote class="font-serif uppercase leading-none text-2xl lg:text-3xl xl:text-4xl">
             <p v-html="section.quote"></p>
             <cite class="not-italic">{{ section.cite }}</cite>
@@ -92,7 +93,7 @@
         </div>
       </div>
 
-      <div
+      <!-- <div
         v-if="'simplicity_heading' === section.acf_fc_layout"
         class="">
           <div
@@ -103,9 +104,11 @@
             v-html="section.sh_text_2"
             class="heading-2 overflow-hidden relative text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none">
           </div>
-      </div>
+      </div> -->
 
       <Simplicity v-if="'simplicity' === section.acf_fc_layout" :section="section" />
+
+      <FeaturedProject v-if="'project' === section.acf_fc_layout" :section="section" />
 
     </section>
   </div>
@@ -113,6 +116,7 @@
 
 <script>
 import Simplicity from '~/components/Simplicity.vue';
+import FeaturedProject from '~/components/FeaturedProject.vue';
 import PinkDiamond from '~/assets/svg/PinkDiamond.svg?inline';
 
 export default {
@@ -121,6 +125,7 @@ export default {
   components: {
     PinkDiamond,
     Simplicity,
+    FeaturedProject
   },
 
   props: {
@@ -137,36 +142,40 @@ export default {
 <style scoped>
 .small_large {
   > div {
-    @apply w-1/2 pl-10;
+    @apply w-1/2;
   }
 
   > div:first-child {
     @screen xl {
-      @apply w-1/3 pr-10
+      @apply w-1/3;
     }
   }
 
   > div:nth-child(2) {
+    @apply pl-5;
+
     @screen xl {
-      @apply w-2/3
+      @apply w-2/3 pl-10;
     }
   }
 }
 
 .large_small {
   > div {
-    @apply w-1/2 pl-10;
+    @apply w-1/2;
   }
 
   > div:first-child {
     @screen xl {
-      @apply w-2/3
+      @apply w-2/3;
     }
   }
 
   > div:nth-child(2) {
+    @apply pl-5;
+
     @screen xl {
-      @apply w-1/3 pl-10
+      @apply w-1/3 pl-10;
     }
   }
 }

@@ -39,6 +39,7 @@
                         @mousemove="showImage(image)"
                         class="flex-grow">
                       </div>
+
                     </div>
                   </div>
                   </nuxt-link>
@@ -47,9 +48,7 @@
             </template>
         </ul>
 
-        <transition
-          name="move-up"
-          :duration="300">
+        <transition name="move-up">
             <div
                 v-show="displayImages"
                 ref="images"
@@ -145,7 +144,7 @@ export default {
     },
 
     projectMouseEnter(project, e) {
-      this.heading = project.acf.heading;
+      this.heading = project.acf.heading ? project.acf.heading : '';
       this.moveImages(e);
       //this.checkImageBounding();
       //setTimeout(this.checkImageBounding(), 500);
@@ -174,12 +173,12 @@ export default {
 </script>
 
 <style scoped>    
-  .page-leave-active {
+  /* .page-leave-active {
       .hot-images,
       .underline {
         opacity: 0;
       }
-  }
+  } */
         
   .underline {
     transition:all .6s cubic-bezier(.13,.74,.5,.97);

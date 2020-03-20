@@ -34,14 +34,18 @@
         </ul>
       </div>
 
-      <transition name="fade">
+      <transition name="move-up">
           <div
             v-show="displayImages"
             ref="images"
             class="hidden xl:block hot-images fixed z-50 pointer-events-none">
             <div
-              v-if="heading"
-              class="uppercase mb-3 text-pink text-lg xxl:text-xl"><ExternalLink class="inline w-5 mr-2" /> {{ heading }}</div>
+              class="uppercase mb-3 text-pink text-lg xxl:text-xl"
+              :class="{'text-right': !heading}">
+              <ExternalLink
+                v-if="link"
+                class="inline w-5 mr-2" />{{ heading }}
+            </div>
             <img :src="imageSrc"  alt="" />
           </div>
       </transition>
@@ -83,6 +87,7 @@ export default {
     return {
       imageSrc: '',
       heading: '',
+      link: '',
       pageReady: false,
       displayImages: false,
     };
@@ -139,9 +144,7 @@ export default {
     },
 
     projectMouseOver(project) {
-      if (project.date) {
-        this.heading = project.date;
-      }
+      this.heading = project.date ? project.date : '';
       this.showImage(project.image);
     },
   }
