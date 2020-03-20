@@ -14,7 +14,7 @@
                   class="heading-item heading-item-1 w-full flex"
                   :class="'heading-item--' + i">
                   {{ text }}
-                  <Dash class="dash ml-4 xl:ml-6" />
+                  <DashLine class="dash ml-4 xl:ml-6" />
                 </div>
             </div>
             <div
@@ -36,7 +36,7 @@
 
 <script>
 import { TimelineMax } from "gsap";
-import Dash from '~/assets/svg/Dash.svg?inline';
+import DashLine from '~/assets/svg/DashLine.svg?inline';
 
 export default {
   name: "Simplicity",
@@ -46,7 +46,7 @@ export default {
     },
 
     components: {
-        Dash
+      DashLine
     },
 
     data() {
