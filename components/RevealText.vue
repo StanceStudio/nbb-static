@@ -28,16 +28,18 @@ export default {
 
       new SplitText(`.text-${this._uid}__container `, {
         stype: 'lines',
-        linesClass: `text-${this._uid}__item`
+        linesClass: `text-${this._uid}__item text__item`
       });
 
       let tl = new TimelineMax();
-      tl.set(`.text-${this._uid}__item`, {y:'110%'})
+      //tl.set(`.text-${this._uid}__item`, {y:'110%'})
       tl.staggerTo(`.text-${this._uid}__item`, .6 , {y: 0, delay: .6, ease: "power3.out"}, .1, "+=0", () => _that.$emit('reveal-text-complete'));
     }
   },
 };
 </script>
-<style scoped>
-
+<style>
+  .text__item {
+    transform: translateY(100%);
+  }
 </style>

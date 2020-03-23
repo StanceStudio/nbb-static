@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div @mousemove="moveImages">
       <h2 class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none overflow-hidden">
             <div class="project-item flex items-center">Interiors <Colon style="width: 0.085em;" class="ml-2"/></div>
         </h2>
@@ -19,7 +19,6 @@
                   :to="`/projects/${project.slug}`"
                   class="inline-block relative">
                   <div
-                      @mousemove="moveImages"
                       @mouseleave="hideImages"
                       @mouseenter="projectMouseEnter(project, $event)">
                       <h2
@@ -93,7 +92,7 @@ export default {
     }
   },
 
-  mounted() {      
+  mounted() {
    window.addEventListener('scroll', () => {
      this.displayImages = false;
    });
@@ -110,18 +109,12 @@ export default {
     },
 
     hideImages() {
-      //this.checkImageBounding();
-      setTimeout(() => {
+      //setTimeout(() => {
         this.displayImages = false;
-      }, 200);
+      //}, 200);
     },
 
-    moveImages(e) {
-      //const rect = this.$refs.images.getBoundingClientRect();
-
-      // this.imagesOutRight = (rect.right > (window.innerWidth || document.documentElement.clientWidth));
-      // this.imagesOutBottom = (rect.bottom > (window.innerHeight || document.documentElement.clientHeight));
-    
+    moveImages(e) {    
       if (this.$refs.images) {
         TweenMax.to(this.$refs.images, 0.3, {
           css: {
@@ -137,9 +130,9 @@ export default {
         this.image = image;
         this.imageSrc = image.url;
         //this.displayImages = true;
-        setTimeout(() => {
+        //setTimeout(() => {
           this.displayImages = true;
-        }, 150);
+       // }, 150);
       } else {
         this.image = '';
         this.imageSrc = '';
@@ -148,9 +141,6 @@ export default {
 
     projectMouseEnter(project, e) {
       this.heading = project.acf.heading ? project.acf.heading : '';
-      this.moveImages(e);
-      //this.checkImageBounding();
-      //setTimeout(this.checkImageBounding(), 500);
     },
 
     checkImageBounding() {
@@ -158,14 +148,8 @@ export default {
         const rect = this.$refs.images.getBoundingClientRect();
         this.imagesOutRight = (rect.right > (window.innerWidth || document.documentElement.clientWidth));
         this.imagesOutBottom = (rect.bottom > (window.innerHeight || document.documentElement.clientHeight));
-
-        // console.log(rect.bottom);
-        // console.log(this.image);
-        // console.log(window.innerHeight || document.documentElement.clientHeight);
-        //console.log('from', from);
-
         //console.log('this.imagesOutRight',this.imagesOutRight);
-        console.log('this.imagesOutBottom', this.imagesOutBottom);
+        //console.log('this.imagesOutBottom', this.imagesOutBottom);
       }
     }
   },

@@ -1,7 +1,8 @@
 <template>
   <article
     class="single pt-20 xl:pt-26"
-    :class="{ready : pageReady}"> 
+    :class="{ready : pageReady}"
+    @mousemove="moveImages"> 
     <div class="container">
       <header class="mb-10 xl:mb-20">
         <h1
@@ -11,7 +12,7 @@
       </header>
 
       <div class="content pb-12 sm:pb-18 xl:pb-20">
-        <ul class="xl:min-h-screen">
+        <ul>
           <li
             v-for="(section, i) in data.acf.press_items"
             :key="'section-' + i"
@@ -19,7 +20,6 @@
             class="press-item py-1 xl:py-4">
             <span
               class="inline-block"
-              @mousemove="moveImages"
               @mouseleave="displayImages = false"
               @mouseenter="projectMouseOver(section)">
               <a v-if="section.link" :href="section.link" rel="nofollow" target="_blank" class="inline-block">
@@ -49,8 +49,12 @@
             <img :src="imageSrc"  alt="" />
           </div>
       </transition>
-      <Underline class="w-full"/>
-      <FooterNavigation class="pt-20" />
+      <transition name="fade">
+        <Underline v-if="pageReady" class="w-full"/>
+      </transition>
+      <transition name="fade">
+        <FooterNavigation v-if="pageReady" class="pt-12 sm:pt-18 xxl:pt-20" />
+      </transition>
     </div>
     <Footer />
   </article>
@@ -101,6 +105,7 @@ export default {
   },
 
   mounted() {
+    const _that = this;
     //console.log('post data --', this.data);
     
     // move this to a heading component
@@ -118,7 +123,7 @@ export default {
       });
 
       let tl = new TimelineMax();
-      tl.staggerTo('.title-item', .6 , { y: 0, delay: .6, ease: "power3.out"}, .1 );
+      tl.staggerTo('.title-item', .6 , { y: 0, delay: .6, ease: "power3.out"}, .1, "+=0", () => _that.pageReady = true );
     }
   },
 
@@ -137,9 +142,7 @@ export default {
     showImage(image) {
       if (image) {
         this.imageSrc = image.url;
-        setTimeout(() => {
-          this.displayImages = true;
-        }, 200);
+        this.displayImages = true;
       }
     },
 

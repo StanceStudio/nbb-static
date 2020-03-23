@@ -30,13 +30,13 @@ export default {
       this.$bus.$emit('page-enter');
       
       let tl = new TimelineMax();
-      tl.staggerFrom('.project-item', .6 , {y: '110%', delay: 1.5, ease: "power3.out"}, .1, "+=0", () => { document.getElementsByClassName('site-footer')[0].style.opacity = '1'; });
+      tl.staggerFrom('.project-item', .6 , {y: '110%', delay: 1.5, ease: "power3.out"}, .1, "+=0", () => { TweenMax.to('.site-footer', .6 ,{ autoAlpha: 1, ease: "power3.out"} ); });
     },
 
     beforeLeave(el) {
       this.$bus.$emit('page-before-leave');
 
-      document.getElementsByClassName('site-footer')[0].style.opacity = '0';
+      TweenMax.to('.site-footer', .6 ,{ autoAlpha: 0, ease: "power3.out"} );
       TweenMax.staggerTo('.project-item', .6 ,{ y: '-110%', delay: 0, ease: "power3.out"}, .1 );
     }
   },
@@ -60,13 +60,8 @@ export default {
 </style>
 
 <style scoped>
-.out-in-enter-active,
-.page-leave-active {
-  .site-footer {
-    @apply opacity-0;
-
-    transition: opacity 0.4s cubic-bezier(.13,.74,.5,.97);
-  }
+.site-footer {
+  @apply opacity-0;
 }
 
 .page-leave-active,
