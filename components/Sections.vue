@@ -93,20 +93,9 @@
         </div>
       </div>
 
-      <!-- <div
-        v-if="'simplicity_heading' === section.acf_fc_layout"
-        class="">
-          <div
-            v-html="section.sh_text_1"
-            class="heading-1 overflow-hidden relative text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none">
-          </div>
-          <div
-            v-html="section.sh_text_2"
-            class="heading-2 overflow-hidden relative text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none">
-          </div>
-      </div> -->
-
       <Simplicity v-if="'simplicity' === section.acf_fc_layout" :section="section" />
+
+      <Carousel v-if="'gallery' === section.acf_fc_layout" :section="section" />
 
       <FeaturedProject v-if="'project' === section.acf_fc_layout" :section="section" />
 
@@ -117,6 +106,7 @@
 <script>
 import Simplicity from '~/components/Simplicity.vue';
 import FeaturedProject from '~/components/FeaturedProject.vue';
+import Carousel from '~/components/Carousel.vue';
 import PinkDiamond from '~/assets/svg/PinkDiamond.svg?inline';
 
 export default {
@@ -125,7 +115,8 @@ export default {
   components: {
     PinkDiamond,
     Simplicity,
-    FeaturedProject
+    FeaturedProject,
+    Carousel
   },
 
   props: {
