@@ -1,27 +1,19 @@
 <template>
   <article
-    class="single pt-20 xl:pt-26"
-    :class="{ready : pageReady}"
-> 
+    class="single pt-20 xl:pt-26"> 
     <div class="container">
       <header class="mb-10 xl:mb-20">
-        <!-- <h1
-          class="title text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-tight"
-          v-html="title"
-        >
-        </h1> -->
         <h1 class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-tight">
             <RevealText @reveal-text-complete="pageReady = true">{{ title }}</RevealText>
         </h1>
-
       </header>
 
       <transition name="fade">
-        <div  v-show="pageReady">
+        <div v-show="pageReady">
           <div class="xl:min-h-screen">
-            <div v-show="pageReady" class="content pb-12 md:flex sm:pb-18 xl:pb-20">
-              <div class="md:w-5/12 mb-10 md:mb-0">
-                <img :src="data.acf.image.url" alt="">
+            <div class="content pb-12 md:flex sm:pb-18 xl:pb-20">
+              <div class="lazy md:w-5/12 mb-10 md:mb-0">
+                <img v-lazy="data.acf.image.url" alt="">
               </div>
               <div class="md:w-1/2 md:pl-8 lg:pl-14 xxl:pl-20 flex flex-col justify-between">
                 <div class="mb-10">
@@ -74,7 +66,7 @@
           </transition>
         </div>
       <transition name="fade">
-        <Footer v-if="pageReady" />
+        <Footer v-show="pageReady" />
       </transition>
   </article>
 </template>
@@ -123,30 +115,5 @@ export default {
       return this.type === 'page' ? this.data.title.rendered.replace(/^((\S+\s+){0}\S+)\s+/, '$1<br>') : this.data.title.rendered;
     },
   },
-
-  mounted() {
-    //console.log('post data --', this.data);
-    const _that = this;    
-    // move this to a heading component
-    // if (process.browser) {
-    //   require('~/assets/js/SplitTextPlugin.js');
-  
-    //   new SplitText(".title", {
-    //     type: "lines",
-    //     linesClass: "overflow-hidden title__container"
-    //   });
-
-    //   new SplitText(".title__container", {
-    //     type: "lines",
-    //     linesClass: "title-item flex"
-    //   });
-
-    //   let tl = new TimelineMax();
-    //   tl.staggerTo('.title-item', .6 , { y: 0, delay: .6, ease: "power3.out"}, .1, "+=0", () => _that.pageReady = true);
-    // }
-  },
-
-  methods: {
-  }
 };
 </script>

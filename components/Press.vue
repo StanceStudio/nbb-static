@@ -1,7 +1,6 @@
 <template>
   <article
     class="single pt-20 xl:pt-26"
-    :class="{ready : pageReady}"
     @mousemove="moveImages"> 
     <div class="container">
       <header class="mb-10 xl:mb-20">
@@ -105,10 +104,8 @@ export default {
   },
 
   mounted() {
-    const _that = this;
-    //console.log('post data --', this.data);
-    
-    // move this to a heading component
+    const _that = this;    
+    // move this to a heading component?
     if (process.browser) {
       require('~/assets/js/SplitTextPlugin.js');
   

@@ -88,10 +88,7 @@ export default {
   },
 
   mounted() {
-    const _that = this;
-
-    //console.log('post data --', this.data);
-    
+    const _that = this;    
     this.$nextTick(this.addListeners);
 
     this.fetchProjects();
