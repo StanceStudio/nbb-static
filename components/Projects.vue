@@ -17,7 +17,7 @@
               <div class="project-item underline-reveal">
                   <nuxt-link
                   :to="`/projects/${project.slug}`"
-                  class="inline-block relative">
+                  class="inline-block relative hover:text-pink">
                   <div
                       @mouseleave="hideImages"
                       @mouseenter="projectMouseEnter(project, $event)">
@@ -54,7 +54,7 @@
                 :class="[`hot-images--${imageOrientation}`, displayImages ? 'opacity-100' : 'opacity-0', {'hot-images--or': imagesOutRight, 'hot-images--ob': imagesOutBottom }]">
               <div
                 v-if="heading"
-                class="uppercase mb-3 font-light text-white text-lg"
+                class="uppercase mb-3 font-light text-pink text-lg"
                 v-html="heading">
               </div>
               <img :src="imageSrc"  alt="" ref="image"/>
