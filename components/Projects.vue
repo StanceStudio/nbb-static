@@ -65,7 +65,6 @@
 
 <script>
 import { TweenMax, TimelineMax } from "gsap";
-import anime from 'animejs/lib/anime.es.js';
 import Colon from '~/assets/svg/BlackColon.svg?inline';
 import Underline from '~/assets/svg/Underline.svg?inline';
 
