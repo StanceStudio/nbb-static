@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="site-footer w-100 pb-8 pt-12 sm:pb-12 sm:pt-18 xxl:pb-14 xxl:pt-22"
+    class="site-footer w-100 pb-8 pt-12 sm:pb-12 sm:pt-20 xxl:pb-14 xxl:pt-22"
     ref="footer"
   >
     <div class="container flex justify-center">

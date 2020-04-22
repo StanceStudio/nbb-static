@@ -7,11 +7,14 @@
           <div class="title-item flex items-center">Spaces <Colon style="width: 0.085em;" class="ml-2"/></div>
         </h3>
         <h1
-          class="title text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-tight" v-html="title">
+          class="title text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-tight"
+          :class="{'text-pink': type === 'project'}"
+          v-html="title">
         </h1>
         <h2
-          v-if="data.acf.heading"
-          class="title text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none inline-block text-pink" v-html="data.acf.heading">
+          v-if="data.acf.heading && type !== 'project'"
+          class="title text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none inline-block text-pink"
+          v-html="data.acf.heading">
         </h2>
       </header>
       <div

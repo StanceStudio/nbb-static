@@ -4,7 +4,7 @@
       v-for="(section, i) in content"
       :key="'section-' + i"
       :data-type="section.acf_fc_layout"
-      class="py-10 xl:py-14">
+      class="py-8 xl:py-12">
       
         <div
           v-if="'text' === section.acf_fc_layout"
@@ -61,8 +61,20 @@
 
       <div
         v-if="'image_set' === section.acf_fc_layout"
-        class="flex"
-        :class="section.image_layout">
+        class="md:flex images"
+        :class="`images--${section.image_layout}`">
+        <div
+          v-for="(image, i) in section.images"
+          :key="'image-' + i">
+            <div class="lazy">
+              <img v-if="image.image.url" v-lazy="image.image.url" :alt="image.image.alt" />
+            </div>
+        </div>
+      </div>
+
+      <div
+        v-if="'image_set_3' === section.acf_fc_layout"
+        class="md:flex images images--3">
         <div
           v-for="(image, i) in section.images"
           :key="'image-' + i">
@@ -99,6 +111,8 @@
 
       <FeaturedProject v-if="'project' === section.acf_fc_layout" :section="section" />
 
+      <ImageList v-if="'image_list' === section.acf_fc_layout" :section="section" />
+
     </section>
   </div>
 </template>
@@ -107,6 +121,7 @@
 import Simplicity from '~/components/Simplicity.vue';
 import FeaturedProject from '~/components/FeaturedProject.vue';
 import Carousel from '~/components/Carousel.vue';
+import ImageList from '~/components/ImageList.vue';
 import PinkDiamond from '~/assets/svg/PinkDiamond.svg?inline';
 
 export default {
@@ -116,7 +131,8 @@ export default {
     PinkDiamond,
     Simplicity,
     FeaturedProject,
-    Carousel
+    Carousel,
+    ImageList
   },
 
   props: {
@@ -167,6 +183,62 @@ export default {
 
     @screen xl {
       @apply w-1/3 pl-10;
+    }
+  }
+}
+
+.images {
+  @apply -mx-4;
+  
+  > div {
+    @apply px-4 mb-8;
+
+    @screen md {
+      @apply mb-0;
+    }
+  }
+}
+
+.images--50-50 {
+  > div {
+    @screen md {
+      @apply w-1/2;
+    }
+  }
+}
+
+.images--30-70 {
+  > div:first-child {
+    @screen md {
+      @apply w-1/3;
+    }
+  }
+
+  > div:nth-child(2) {
+    @screen md {
+      @apply w-2/3;
+    }
+  }
+}
+
+.images--70-30 {
+  > div:first-child {
+    @screen md {
+      @apply w-2/3;
+    }
+  }
+
+  > div:nth-child(2) {
+    @screen md {
+      @apply w-1/3;
+    }
+  }
+}
+
+.images--3 {
+  > div {
+    @screen md {
+      @apply w-1/3;
     }
   }
 }

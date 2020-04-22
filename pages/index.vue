@@ -41,7 +41,7 @@
         </div>
         <div v-if="page.acf.statement_link" class="text-pink font-sans font-light mt-16 text-2xl text-center">
           <nuxt-link :to="filterPostContent(page.acf.statement_link)">
-            READ MORE
+            View Our Work
           </nuxt-link>
         </div>
       </div>
