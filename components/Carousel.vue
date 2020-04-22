@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <no-ssr>
+    <client-only>
       <div class="carousel">
         <vue-tiny-slider
           ref="tinySlider"
@@ -25,7 +25,7 @@
           <div class="carousel__nav-next" :class="{'full' : currentSlide === 1}" data-tooltip="Next" @click="nextPane" @mouseover="direction = 'next'" @mouseout="direction = ''" v-if="section.images.length > currentSlide" ref="next"></div>
         </div> -->
       </div>
-    </no-ssr>
+    </client-only>
   </div>
 </template>
 
