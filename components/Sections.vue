@@ -65,10 +65,11 @@
         :class="`images--${section.image_layout}`">
         <div
           v-for="(image, i) in section.images"
-          :key="'image-' + i">
-            <div class="lazy">
+          :key="'image-' + i"
+          class="lazy">
+            <!-- <div class="lazy"> -->
               <img v-if="image.image.url" v-lazy="image.image.url" :alt="image.image.alt" />
-            </div>
+            <!-- </div> -->
         </div>
       </div>
 
@@ -196,6 +197,10 @@ export default {
     @screen md {
       @apply mb-0;
     }
+  }
+
+  img {
+    object-fit: cover
   }
 }
 
