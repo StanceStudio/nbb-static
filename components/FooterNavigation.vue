@@ -13,7 +13,7 @@
             class="nav-item__link inline-block">
             {{ item.title }}
             <span class="underline hidden xl:block w-full">
-              <Underline class="text-pink w-full"/>
+              <Underline class="text-pink w-full" style="height: 10px;"/>
             </span>
           </nuxt-link>
         </li>
