@@ -25,7 +25,7 @@
 
       <div class="content min-h-screen pb-12 sm:pb-18 xl:pb-20">
         <transition name="fade">
-          <Sections v-if="pageReady" :content="content" />
+          <Sections v-if="pageReady" :content="content" :template="template" />
         </transition>
       </div>
       
@@ -87,6 +87,10 @@ export default {
 
     content() {
       return this.data.acf.content ? this.data.acf.content : [];
+    },
+
+    template() {
+      return this.data.template ? this.data.template : '';
     },
   },
 
