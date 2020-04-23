@@ -4,7 +4,7 @@
     <div class="container">
       <header class="mb-10 xl:mb-20">
         <h3 v-if="type === 'project'" class="overflow-hidden text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-none inline-block">
-          <div class="title-item flex items-center">Spaces <Colon style="width: 0.085em;" class="ml-2"/></div>
+          <div class="title-item flex items-center">Spaces</div>
         </h3>
         <h1
           class="title text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-tight"
