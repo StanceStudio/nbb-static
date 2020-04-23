@@ -9,12 +9,14 @@
         <div
           v-if="'text' === section.acf_fc_layout"
           class="font-light text-lg xxl:text-xl xl:w-1/2"
-          :class="{'ml-auto' : section.text_align === 'right'}">
+          :class="{'ml-auto' : section.text_align === 'right', 'flex items-baseline' : !section.heading && template === 'templates/template-dna.php'}">
+          <PinkDiamond v-if="section.text_align === 'right' && !section.heading && template === 'templates/template-dna.php'" class="w-12 mt-4 mr-8 lg:mr-18" />
           <div
-            v-if="section.heading"
             class="flex items-baseline mb-2">
-            <PinkDiamond style="width: 0.5em;" class="mr-1" />
-            <h3 v-html="section.heading" class="uppercase"></h3>
+            <PinkDiamond
+              v-if="section.heading"
+              style="width: 0.5em;" class="mr-1" />
+              <h3 v-html="section.heading" class="uppercase"></h3>
           </div>
           <div
             v-html="filterPostContent(section.text)"
@@ -137,7 +139,8 @@ export default {
   },
 
   props: {
-    content: Array
+    content: Array,
+    template: String
   },
 
   mixins: {
