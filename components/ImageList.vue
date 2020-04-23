@@ -9,7 +9,7 @@
     </div>
     <div
       v-if="section.il_text_items"
-      class="flex flex-col">
+      class="flex flex-col justify-between">
       <div
         v-for="(text, i) in section.il_text_items"
         :key="'section-' + i"
