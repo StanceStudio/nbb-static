@@ -6,12 +6,13 @@
         <vue-tiny-slider
           ref="tinySlider"
           :mouse-drag="true"
-          :loop="false"
+          :loop="true"
           items="1"
-          :controls="false"
+          :controls="true"
           :nav="false"
           :preventScrollOnTouch="'auto'"
-          
+          :autoHeight="true"
+          :responsive="responsiveOps"
           >
             <div
               v-for="image in section.images"
@@ -49,53 +50,8 @@ export default {
       //      : [],
       direction   : '',
       carousel    : '',
-      currentSlide: 0,
     };
   },
-
-  // created() {
-  //   this.$slots.default.forEach((tab, idx) => {
-  //     this.slides.push({
-  //       id: idx,
-  //       title: tab.data.attrs.title,
-  //       elem: tab.data.domProps.innerHTML
-  //     });
-  //   });
-  // },
-
-  mounted() {
-    const _that = this;
-
-    console.log(this.section);
-    
-    //this.currentSlide = this.$refs.tinySlider.slider.getInfo().displayIndex;
-
-    // console.log('slides.length', this.slides.length)
-    // console.log(this.$refs.tinySlider.slider.getInfo().displayIndex);
-
-    // $(this.$refs.carousel).on('afterChange', function(event, slick, currentSlide, nextSlide){
-    //   _that.currentSlide = currentSlide;
-    //   _that.$emit("event-slide-change", _that.currentSlide > 0 ? "Prev" : "Next" );
-    // });
-
-    //this.$refs.tinySlider.slider.events.on('indexChanged', function (info, eventName) {
-      //console.log(info);
-       //_that.currentSlide = info.displayIndex;
-      //_that.$emit("event-slide-change", _that.currentSlide > 0 ? "Prev" : "Next" );
-    //});
-  },
-
-  methods: {
-    prevPane() {
-      //console.log('prevPane');
-      
-      //this.$refs.tinySlider.slider.goTo('prev');
-    },
-
-    nextPane() {
-      //this.$refs.tinySlider.slider.goTo('next');
-    },
-  }
 };
 </script>
 
@@ -108,7 +64,29 @@ export default {
   }
 
   .tns-outer {
-    @apply overflow-hidden;
+    @apply overflow-hidden relative;
+  }
+
+  .tns-controls {
+    @apply absolute h-full inset-0 z-10 hidden;
+
+    @screen lg {
+      @apply flex;
+    }
+
+     button {
+       @apply w-1/2 bg-no-repeat bg-center outline-none;
+
+       font-size: 0px;
+     }
+
+     button[data-controls="prev"]:hover {
+        cursor: url(../assets/svg/ArrowLeft.svg), auto;
+      }
+
+      button[data-controls="next"]:hover {
+        cursor: url(../assets/svg/ArrowRight.svg), auto;
+      }
   }
 }
 
