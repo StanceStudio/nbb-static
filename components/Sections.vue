@@ -56,7 +56,7 @@
           :class="{'lg:ml-10 xl:ml-20': section.image.url}">
           <blockquote class="font-serif uppercase leading-none text-2xl lg:text-3xl xl:text-4xl">
             <p v-html="section.quote"></p>
-            <cite class="not-italic sm:text-2xl lg:text-3xl xxl:text-4xl">{{ section.cite }}</cite>
+            <cite class="not-italic text-lg sm:text-xl xl:text-4xl">{{ section.cite }}</cite>
           </blockquote>
         </div>
       </div>

@@ -20,7 +20,7 @@
       <div
         v-if="data.acf.introduction"
         class="overflow-hidden mb-14">
-        <div class="title-item text-lg font-light md:w-1/2" v-html="data.acf.introduction"></div>
+        <div class="title-item text-lg xxl:text-xl font-light md:w-1/2" v-html="data.acf.introduction"></div>
       </div>
 
       <div class="content min-h-screen pb-12 sm:pb-18 xl:pb-20">
