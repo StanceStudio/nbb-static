@@ -14,6 +14,25 @@
       </div>
 
       <div
+      class="py-10 md:py-16 container"
+      v-if="page.acf.award_items">
+        <section
+        v-for="(award_item, i) in page.acf.award_items"
+        :key="'section-' + i"
+        :data-type="award_item.acf_fc_layout"
+        class="md:flex py-6 md:py-10 items-center">
+          <div class="w-8/12 md:w-1/3 mb-6 md:mb-0 pr-10 lg:pr-0" v-if="award_item.image">
+            <img v-lazy="award_item.image.url" :alt="award_item.image.alt" />
+          </div>
+          <div class="md:w-2/3">
+            <div class="text-xl md:text-2xl font-light text-pink leading-tight" v-if="award_item.title">{{ award_item.title }}</div>
+            <div class="md:text-xl font-light" v-if="award_item.location">{{ award_item.title }}</div>
+          </div>
+        </section>
+
+      </div>
+
+      <div
         class="w-full min-h-screen text-center font-serif flex flex-col justify-center items-center"
       >
         <div
@@ -47,7 +66,7 @@
       </div>
     </section>
 
-    <Sections v-if="page.acf.content" :content="page.acf.content" class="container"/>
+    <Sections v-if="page.acf.content" :content="page.acf.content" :template="null" class="container"/>
 
     <div class="container">
       <Underline class="w-full"/>
@@ -193,6 +212,10 @@ export default {
 
 .home .site-header {  
   @apply absolute;
+}
+
+.home blockquote {
+  @apply text-2xl;
 }
 
 .cover {

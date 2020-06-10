@@ -13,7 +13,7 @@
       <div
         v-for="(text, i) in section.il_text_items"
         :key="'section-' + i"
-        class="uppercase font-serif text-xl lg:text-2xl flex md:flex-no-wrap flex-wrap items-center">
+        class="uppercase font-serif text-md md:text-xl lg:text-2xl flex md:flex-no-wrap flex-wrap items-center">
           <div ref="text1" :style="{width: itemWidth}">{{ text.text_1 }}</div> <DashLine class="inline-block px-4" style="width:3em;height:1rem"/> <div>{{ text.text_2 }}</div>
       </div>
     </div>

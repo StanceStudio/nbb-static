@@ -4,7 +4,7 @@
     aria-label="Main"
     class="ml-auto xl:-mr-6">
       <ul
-        class="nav flex flex-col lg:flex-row lg:items-center font-serif uppercase absolute h-screen lg:h-auto lg:relative inset-0 lg:inset-auto z-10 bg-lightgreen lg:bg-transparent pt-18 lg:pt-0 opacity-0 invisible lg:visible lg:opacity-100 px-4 lg:px-0"
+        class="nav flex flex-col lg:flex-row lg:items-center font-serif uppercase absolute h-screen lg:h-auto lg:relative inset-0 lg:inset-auto z-10 bg-green lg:bg-transparent pt-18 lg:pt-0 opacity-0 invisible lg:visible lg:opacity-100 px-4 lg:px-0"
         :class="{'nav--visible' : showNav}">
         <li
           v-for="(item) in menuItems"
