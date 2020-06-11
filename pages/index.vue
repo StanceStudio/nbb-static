@@ -50,13 +50,13 @@
             AND EXPRESSION.
           </div>
 
-          <div
+          <!-- <div
             v-for="(image, i) in images"
             :key="image.src"
             :class="'mid-img mid-img--' + i"
           >
             <img :src="image.src" alt="" />
-          </div>
+          </div> -->
         </div>
         <div v-if="page.acf.statement_link" class="text-pink font-sans font-light mt-16 text-2xl text-center uppercase">
           <nuxt-link :to="filterPostContent(page.acf.statement_link)">
