@@ -14,7 +14,7 @@
         <div class="xl:min-h-screen">
           <div v-show="pageReady" class="content pb-12 sm:pb-18 xl:pb-20">
 
-            <div
+            <!-- <div
             class="pB-10 md:pb-16"
             v-if="data.acf.award_items">
               <section
@@ -37,7 +37,7 @@
               class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-tight">
               Press
             </h2>
-          </header>
+          </header> -->
 
             <ul>
               <li
