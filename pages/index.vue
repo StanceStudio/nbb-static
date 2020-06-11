@@ -26,10 +26,9 @@
           </div>
           <div class="md:w-2/3">
             <div class="text-xl md:text-2xl font-light text-pink leading-tight" v-if="award_item.title">{{ award_item.title }}</div>
-            <div class="md:text-xl font-light" v-if="award_item.location">{{ award_item.title }}</div>
+            <div class="md:text-xl font-light" v-if="award_item.location">{{ award_item.location }}</div>
           </div>
         </section>
-
       </div>
 
       <div

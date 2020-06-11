@@ -1,7 +1,7 @@
 <template>
   <article
     class="single pt-20 xl:pt-26"
-    @mousemove="moveImages"> 
+    @mousemove="moveImages">
     <div class="container">
       <header class="mb-10 xl:mb-20">
         <h1
@@ -10,28 +10,58 @@
         </h1>
       </header>
 
-      <div class="content pb-12 sm:pb-18 xl:pb-20">
-        <ul>
-          <li
-            v-for="(section, i) in data.acf.press_items"
-            :key="'section-' + i"
-            :data-type="section.acf_fc_layout"
-            class="press-item py-1 xl:py-4">
-            <span
-              class="inline-block"
-              @mouseleave="displayImages = false"
-              @mouseenter="projectMouseOver(section)">
-              <a v-if="section.link" :href="section.link" rel="nofollow" target="_blank" class="inline-block">
-                <span class="title text-xl sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-none">{{ section.title }}</span>
-              </a>
-              <span v-else class="title inline-block text-xl sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-none" v-html="section.title"></span>
-              <span class="underline hidden xl:block w-full">
-                <Underline class="text-pink w-full"/>
-              </span>
-            </span>
-          </li>
-        </ul>
-      </div>
+      <transition name="fade">
+        <div class="xl:min-h-screen">
+          <div v-show="pageReady" class="content pb-12 sm:pb-18 xl:pb-20">
+
+            <div
+            class="pB-10 md:pb-16"
+            v-if="data.acf.award_items">
+              <section
+              v-for="(award_item, i) in data.acf.award_items"
+              :key="'section-' + i"
+              :data-type="award_item.acf_fc_layout"
+              class="md:flex py-6 md:py-10 items-center">
+                <div class="w-8/12 md:w-1/3 mb-6 md:mb-0 pr-10 lg:pr-0" v-if="award_item.image">
+                  <img v-lazy="award_item.image.url" :alt="award_item.image.alt" />
+                </div>
+                <div class="md:w-2/3">
+                  <div class="text-xl md:text-2xl font-light text-pink leading-tight" v-if="award_item.title">{{ award_item.title }}</div>
+                  <div class="md:text-xl font-light" v-if="award_item.location">{{ award_item.location }}</div>
+                </div>
+              </section>
+            </div>
+
+            <header class="mb-10 xl:mb-20">
+            <h2
+              class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase leading-tight">
+              Press
+            </h2>
+          </header>
+
+            <ul>
+              <li
+                v-for="(section, i) in data.acf.press_items"
+                :key="'section-' + i"
+                :data-type="section.acf_fc_layout"
+                class="press-item py-1 xl:py-4">
+                <span
+                  class="inline-block"
+                  @mouseleave="displayImages = false"
+                  @mouseenter="projectMouseOver(section)">
+                  <a v-if="section.link" :href="section.link" rel="nofollow" target="_blank" class="inline-block">
+                    <span class="title text-xl sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-none">{{ section.title }}</span>
+                  </a>
+                  <span v-else class="title inline-block text-xl sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-none" v-html="section.title"></span>
+                  <span class="underline hidden xl:block w-full">
+                    <Underline class="text-pink w-full"/>
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </transition>
 
       <transition name="move-up">
           <div
