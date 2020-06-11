@@ -108,6 +108,34 @@
         </div>
       </div>
 
+      <div
+        v-if="'menu' === section.acf_fc_layout">
+         <div
+          v-for="(menu_item, i) in section.menu_items"
+          :key="'menu-item-' + i"
+          class="overflow-hidden">
+            <div class="underline-reveal">
+                <nuxt-link
+                  v-if="menu_item.link"
+                  :to="filterPostContent(menu_item.link)"
+                  class="inline-block relative hover:text-pink">
+                  <h2
+                    v-html="menu_item.title"
+                    class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase inline-block leading-none">
+                    </h2>
+                    <div class="underline hidden xl:block">
+                      <Underline class="text-pink w-full"/>
+                    </div>
+              </nuxt-link>
+              <h2
+                v-else
+                  v-html="menu_item.title"
+                  class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase inline-block leading-none">
+                  </h2>
+            </div>
+        </div>
+      </div>
+
       <Simplicity v-if="'simplicity' === section.acf_fc_layout" :section="section" />
 
       <Carousel v-if="'gallery' === section.acf_fc_layout" :section="section" />
@@ -126,12 +154,14 @@ import FeaturedProject from '~/components/FeaturedProject.vue';
 import Carousel from '~/components/Carousel.vue';
 import ImageList from '~/components/ImageList.vue';
 import PinkDiamond from '~/assets/svg/PinkDiamond.svg?inline';
+import Underline from '~/assets/svg/Underline.svg?inline';
 
 export default {
   name: "Sections",
 
   components: {
     PinkDiamond,
+    Underline,
     Simplicity,
     FeaturedProject,
     Carousel,
