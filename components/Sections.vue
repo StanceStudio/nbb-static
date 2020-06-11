@@ -117,7 +117,7 @@
             <div class="underline-reveal">
                 <nuxt-link
                   v-if="menu_item.link"
-                  :to="`/${filterPostContent(menu_item.link)}`"
+                  :to="filterPostContent(menu_item.link)"
                   class="inline-block relative hover:text-pink">
                   <h2
                     v-html="menu_item.title"
