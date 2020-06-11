@@ -21,7 +21,7 @@
         :key="'section-' + i"
         :data-type="award_item.acf_fc_layout"
         class="md:flex py-6 md:py-10 items-center">
-          <div class="w-8/12 md:w-1/3 mb-6 md:mb-0 pr-10 lg:pr-0" v-if="award_item.image">
+          <div class="w-8/12 md:w-1/3 mb-6 md:mb-0 pr-10" v-if="award_item.image">
             <img v-lazy="award_item.image.url" :alt="award_item.image.alt" />
           </div>
           <div class="md:w-2/3">
