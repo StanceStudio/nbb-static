@@ -99,12 +99,13 @@
       <div
         v-if="'headline' === section.acf_fc_layout"
         class="flex">
-        <div class="w-12 mt-4 mr-8 lg:mr-18" >
-          <PinkDiamond />
+        <div class="mt-4 mr-8 lg:mr-18">
+          <PinkDiamond style="width: 25px;"/>
         </div>
         <div
           v-html="section.headline_text"
-          class="text-xl sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-tight">
+          class="text-xl sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-tight"
+          :class="{'text-pink' : section.headline_colour === 'pink'}">
         </div>
       </div>
 
