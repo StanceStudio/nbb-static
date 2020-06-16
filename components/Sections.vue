@@ -96,6 +96,11 @@
         </h2>
       </div>
 
+       <div
+        v-if="'line' === section.acf_fc_layout">
+          <Underline class="text-black w-full"/>
+      </div>
+
       <div
         v-if="'headline' === section.acf_fc_layout"
         class="flex">
