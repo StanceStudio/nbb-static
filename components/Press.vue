@@ -10,9 +10,9 @@
         </h1>
       </header>
 
-      <transition name="fade">
+      <!-- <transition name="fade"> -->
         <div class="xl:min-h-screen">
-          <div v-show="pageReady" class="content pb-12 sm:pb-18 xl:pb-20">
+          <div class="content pb-12 sm:pb-18 xl:pb-20">
 
             <!-- <div
             class="pB-10 md:pb-16"
@@ -61,7 +61,7 @@
             </ul>
           </div>
         </div>
-      </transition>
+      <!-- </transition> -->
 
       <transition name="move-up">
           <div
