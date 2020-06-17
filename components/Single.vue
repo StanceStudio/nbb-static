@@ -25,7 +25,7 @@
 
       <div class="content min-h-screen pb-12 sm:pb-18 xl:pb-20">
         <transition name="fade">
-          <Sections v-if="pageReady" :content="content" :template="template" />
+          <Sections v-show="pageReady" :content="content" :template="template" />
         </transition>
       </div>
       
