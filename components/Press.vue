@@ -49,8 +49,10 @@
                   class="inline-block"
                   @mouseleave="displayImages = false"
                   @mouseenter="projectMouseOver(section)">
-                  <a v-if="section.link" :href="section.link" rel="nofollow" target="_blank" class="inline-block">
+                  <a v-if="section.link" :href="section.link" rel="nofollow" target="_blank" class="flex">
                     <span class="title text-xl sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-none">{{ section.title }}</span>
+                    <ExternalLink
+                      class="inline w-5 md:w-6 ml-2 lg:hidden" />
                   </a>
                   <span v-else class="title inline-block text-xl sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-none" v-html="section.title"></span>
                   <span class="underline hidden xl:block w-full">
