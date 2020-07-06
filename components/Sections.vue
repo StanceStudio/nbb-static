@@ -10,9 +10,13 @@
           v-if="'text' === section.acf_fc_layout"
           class="font-light text-lg xxl:text-xl xl:w-1/2"
           :class="{'ml-auto' : section.text_align === 'right', 'flex items-baseline' : !section.heading && template === 'templates/template-dna.php'}">
-          <PinkDiamond v-if="section.text_align === 'right' && !section.heading && template === 'templates/template-dna.php'" class="w-12 mt-4 mr-8 lg:mr-18" />
+          <PinkDiamond
+          v-if="section.text_align === 'right' && !section.heading && template === 'templates/template-dna.php'"
+          class="mt-4 mr-8 lg:mr-18"
+          style="width: 25px;"/>
           <div
-            class="flex items-baseline mb-2">
+            v-if="section.heading"
+            class="flex items-baseline mb-2 items-start">
             <PinkDiamond
               v-if="section.heading"
               style="width: 0.5em;" class="mr-1" />
@@ -20,7 +24,7 @@
           </div>
           <div
             v-html="filterPostContent(section.text)"
-            class="wysiwyg">
+            class="wysiwyg w-full flex-1">
           </div>
           <div
             v-if="section.link && section.link_text"
