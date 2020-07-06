@@ -13,6 +13,10 @@ a {
   display: inline;
 }
 
+strong, b {
+  font-weight: 500;
+}
+
 /** LAYOUT **/
 .container {
   @apply px-4;

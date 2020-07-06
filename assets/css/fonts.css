@@ -15,6 +15,14 @@
 }
 
 @font-face {
+    font-family: 'FoundersGrotesk';
+    src: url('/fonts/foundersgrotesk/FoundersGroteskMedium.woff2?v=4.4.0') format('woff2'), url('/fonts/foundersgrotesk/FoundersGroteskMedium.woff?v=4.4.0') format('woff'), url('/fonts/foundersgrotesk/FoundersGroteskMedium.ttf?v=4.4.0') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
     font-family: 'Ogg';
     src: url('/fonts/oggroman/OggRoman.woff2?v=4.4.0') format('woff2'), url('/fonts/oggroman/OggRoman.woff?v=4.4.0') format('woff'), url('/fonts/oggroman/OggRoman.ttf?v=4.4.0') format('truetype');
     font-weight: normal;
