@@ -12,7 +12,6 @@
           :nav="false"
           :preventScrollOnTouch="'auto'"
           :autoHeight="true"
-          :responsive="responsiveOps"
           >
             <div
               v-for="image in section.images"
