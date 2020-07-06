@@ -55,13 +55,17 @@ export default {
   mounted() {
     const _that = this;
 
-    this.calculateItemWidths();
+    _that.calculateItemWidths();
 
     if (process.browser) {
       window.addEventListener('resize', function() {
         debounce(_that.calculateItemWidths(), 500);
       });
     }
+
+    this.$Lazyload.$on('loaded', function ({ bindType, el, naturalHeight, naturalWidth, $parent, src, loading, error }, formCache) {
+      _that.calculateItemWidths();
+    })
   },
 
   methods: {
