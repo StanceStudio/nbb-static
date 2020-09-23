@@ -89,7 +89,6 @@
         <FooterNavigation v-if="pageReady" class="pt-12 sm:pt-18 xxl:pt-20" />
       </transition>
     </div>
-    <Footer />
   </article>
 </template>
 
