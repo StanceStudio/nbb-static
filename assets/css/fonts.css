@@ -24,7 +24,7 @@
 
 @font-face {
     font-family: 'Ogg';
-    src: url('/fonts/oggroman/OggRoman.woff2?v=4.4.0') format('woff2'), url('/fonts/oggroman/OggRoman.woff?v=4.4.0') format('woff'), url('/fonts/oggroman/OggRoman.ttf?v=4.4.0') format('truetype');
+    src: url('/fonts/ogg/OggRegular.woff2?v=4.4.0') format('woff2'), url('/fonts/ogg/OggRegular.woff?v=4.4.0') format('woff'), url('/fonts/ogg/OggRegular.ttf?v=4.4.0') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
