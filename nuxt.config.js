@@ -190,7 +190,19 @@ export default {
             };
           });
         });
-      return Promise.all([posts, pages, projects]).then(values => {
+      let press = await axios
+        .get(`${ process.env.WP_API}/wp/v2/press`, {
+          params: { orderby: 'date', per_page: 100, _embed: null }
+        })
+        .then(res => {
+          return res.data.map(pressItem => {
+            return {
+              route: '/press/' + pressItem.slug,
+              payload: pressItem
+            };
+          });
+        });
+      return Promise.all([posts, pages, projects, press]).then(values => {
         return [...values[0], ...values[1], ...values[2]];
       });
     }
