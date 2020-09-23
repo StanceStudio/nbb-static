@@ -119,6 +119,7 @@ export default {
       bodyAttrs: {
         class: 'home'
       },
+      title: 'NBB Design'
     }
   },
 
