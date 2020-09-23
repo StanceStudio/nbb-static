@@ -70,10 +70,15 @@ export default {
   transform: translateX(-100%);
 }
 
+ /* .out-in-leave-to {
+   transform: translateX(-100%);
+ } */
+
 .out-in-enter-to {
   transform: translateX(0);
 }
 
+.out-in-leave-to,
 .page-leave-active,
 .out-in-enter-active {
   transition: transform 0.6s cubic-bezier(.13,.74,.5,.97), opacity 0.6s cubic-bezier(.13,.74,.5,.97);
