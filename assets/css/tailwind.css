@@ -252,3 +252,11 @@ strong, b {
     opacity: 0!important;
   }
 }
+
+section[data-type="heading"]+section[data-type="menu"] {
+  @apply -mt-8 pt-0;
+
+  @screen xl {
+    @apply -mt-12;
+  }
+}
