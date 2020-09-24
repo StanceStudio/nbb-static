@@ -51,11 +51,22 @@ export default {
       carousel    : '',
     };
   },
+
+  head() {
+      return {
+        link: [
+          {
+            rel: 'stylesheet',
+            href: 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.1/tiny-slider.css'
+          }
+        ]
+      }
+    }
 };
 </script>
 
 <style lang="scss">
-@import '~tiny-slider/src/tiny-slider';
+//@import '~tiny-slider/src/tiny-slider';
 
 .carousel {
   img {
