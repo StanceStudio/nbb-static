@@ -203,7 +203,7 @@ export default {
           });
         });
       return Promise.all([posts, pages, projects, press]).then(values => {
-        return [...values[0], ...values[1], ...values[2]];
+        return [...values[0], ...values[1], ...values[2], ...values[3]];
       });
     }
   }
