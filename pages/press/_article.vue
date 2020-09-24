@@ -1,5 +1,5 @@
 <template>
-  <Press :data="press" type="press" />
+  <Press :data="article" type="press" />
 </template>
 
 <script>
@@ -9,11 +9,11 @@ export default {
   async asyncData({ app, store, params }) {    
     const { data } = await app.$axios.get(`${process.env.wpAPI}/wp/v2/press`, {
       params: {
-        slug: params.press,
+        slug: params.article,
         _embed: true
       }
     });
-    return { press: data[0] };
+    return { article: data[0] };
   },
   
   components: {
