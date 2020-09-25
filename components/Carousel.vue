@@ -70,7 +70,11 @@ export default {
 
 .carousel {
   img {
-    @apply w-full h-auto;
+    @apply inline-block;
+  }
+
+  .tns-item {
+    @apply text-center;
   }
 
   .tns-outer {
