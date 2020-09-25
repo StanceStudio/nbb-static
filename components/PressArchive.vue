@@ -72,13 +72,13 @@
             v-show="displayImages"
             ref="images"
             class="hidden xl:block hot-images fixed z-50 pointer-events-none">
-            <div
+            <!-- <div
               class="uppercase mb-3 text-pink text-lg xxl:text-xl"
               :class="{'text-right': !heading}">
               <ExternalLink
                 v-if="link"
                 class="inline w-5 mr-2" />{{ heading }}
-            </div>
+            </div> -->
             <img :src="imageSrc"  alt="" />
           </div>
       </transition>
@@ -171,15 +171,16 @@ export default {
 
     showImage(image) {
       if (image) {
-        this.imageSrc = image.url;
+        this.imageSrc = image;
         this.displayImages = true;
       }
     },
 
     projectMouseOver(project) {
-      this.heading = project.date ? project.date : '';
+      console.log(project);
       this.link = project.link ? project.link : '';
-      this.showImage(project.image);
+      const featuredImage = project._embedded['wp:featuredmedia'];
+      this.showImage(featuredImage[0].media_details.sizes['stance-400'].source_url);
     },
   }
 };
