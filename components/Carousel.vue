@@ -17,7 +17,7 @@
               v-for="image in section.images"
               :key="image.id"
               class="carousel__slide">
-              <img :src="image.url" alt="">
+              <img :src="image.sizes['stance-1000']" :alt="image.alt">
             </div>
         </vue-tiny-slider>
         <!-- <div class="carousel__nav" v-if="section.images.length > 1">
