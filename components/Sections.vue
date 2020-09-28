@@ -128,7 +128,7 @@
                 <nuxt-link
                   v-if="menu_item.link"
                   :to="filterPostContent(menu_item.link)"
-                  class="inline-block relative hover:text-pink">
+                  class="inline-block relative hover:text-black">
                   <h2
                     v-html="menu_item.title"
                     class="text-2xl sm:text-4xl lg:text-5xl xxl:text-6xl font-serif uppercase inline-block leading-none">
