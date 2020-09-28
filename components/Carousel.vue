@@ -88,25 +88,44 @@ export default {
   }
 
   .tns-controls {
-    @apply absolute h-full inset-0 z-10 hidden;
+    @apply absolute flex w-full z-10 justify-between;
+
+    top: 50%;
+    transform: translateY(-50%);
 
     @screen lg {
-      @apply flex;
+      @apply h-full inset-0 z-10;
+
+      transform: none;
+      top: 0;
     }
 
      button {
-       @apply w-1/2 bg-no-repeat bg-center outline-none;
+       @apply bg-no-repeat bg-center outline-none h-12 w-12 bg-contain;
 
        font-size: 0px;
-     }
 
-     button[data-controls="prev"]:hover {
-        cursor: url(../assets/svg/ArrowLeft.svg), auto;
+      @screen lg {
+        @apply w-1/2 h-auto;
+        background-image: none!important;
       }
+    }
 
-      button[data-controls="next"]:hover {
-        cursor: url(../assets/svg/ArrowRight.svg), auto;
-      }
+    button[data-controls="prev"] {
+      background-image: url(../assets/svg/ArrowLeft.svg);
+    }
+
+    button[data-controls="next"] {
+      background-image: url(../assets/svg/ArrowRight.svg);
+    }
+
+    button[data-controls="prev"]:hover {
+      cursor: url(../assets/svg/ArrowLeft.svg), auto;
+    }
+
+    button[data-controls="next"]:hover {
+      cursor: url(../assets/svg/ArrowRight.svg), auto;
+    }
   }
 }
 
