@@ -88,7 +88,7 @@ export default {
   }
 
   .tns-controls {
-    @apply absolute flex w-full z-10 justify-between;
+    @apply absolute flex w-full z-10 justify-between outline-none;
 
     top: 50%;
     transform: translateY(-50%);
