@@ -53,8 +53,8 @@
                   :to="`/press/${press.slug}`"
                   class="flex">
                     <span class="title text-xl sm:text-2xl lg:text-3xl xxl:text-4xl font-serif uppercase leading-none">{{ press.title.rendered }}</span>
-                    <ExternalLink
-                      class="inline w-5 md:w-6 ml-2 lg:hidden" style="height:1.5rem;" />
+                    <!-- <ExternalLink
+                      class="inline w-5 md:w-6 ml-2 lg:hidden" style="height:1.5rem;" /> -->
                   </nuxt-link>
                   <span class="underline hidden xl:block w-full">
                     <Underline class="text-pink w-full"/>
