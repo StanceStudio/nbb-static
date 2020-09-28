@@ -34,7 +34,7 @@
         <div class="title-item text-lg xxl:text-xl font-light md:w-1/2" v-html="data.acf.introduction"></div>
       </div>
 
-      <div class="content min-h-screen pb-12 sm:pb-18 xl:pb-20">
+      <div class="content xl:min-h-screen pb-12 sm:pb-18 xl:pb-20">
         <transition name="fade">
           <Sections v-if="pageReady" :content="content" :template="template" />
         </transition>
