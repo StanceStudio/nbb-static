@@ -71,8 +71,12 @@ export default {
 .carousel {
   img {
     @apply inline-block;
-
-    max-width: 50rem;
+    
+    @screen xl {
+      max-height: 100vh;
+      width: auto;
+    }
+    //max-width: 50rem;
   }
 
   .tns-item {
