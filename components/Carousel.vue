@@ -5,13 +5,15 @@
       <div class="carousel">
         <vue-tiny-slider
           ref="tinySlider"
+          items="1"
+          gutter="0"
           :mouse-drag="true"
           :loop="true"
-          items="1"
           :controls="true"
           :nav="false"
           :preventScrollOnTouch="'auto'"
           :autoHeight="true"
+          :responsive="responsiveSettings"
           >
             <div
               v-for="image in section.images"
@@ -49,6 +51,12 @@ export default {
       //      : [],
       direction   : '',
       carousel    : '',
+      responsiveSettings: {
+        920: {
+          items: this.section.gallery_items,
+          gutter: 20,
+        }
+      }
     };
   },
 
