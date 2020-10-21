@@ -16,10 +16,11 @@
           :responsive="responsiveSettings"
           >
             <div
-              v-for="image in section.images"
+              v-for="image in slideItems"
               :key="image.id"
               class="carousel__slide">
-              <img :src="image.sizes['stance-1000']" :alt="image.alt">
+              <img 
+                :src="image.sizes['stance-1000']" :alt="image.alt">
             </div>
         </vue-tiny-slider>
         <!-- <div class="carousel__nav" v-if="section.images.length > 1">
@@ -51,6 +52,7 @@ export default {
       //      : [],
       direction   : '',
       carousel    : '',
+      slideItems: [],
       responsiveSettings: {
         920: {
           items: this.section.gallery_items,
@@ -69,6 +71,17 @@ export default {
           }
         ]
       }
+    },
+
+    mounted() {
+      // removes first slide if using a tablet or mobile
+      const slides = this.section.images;
+      
+      if (this.$device.isMobileOrTablet && this.section.hide_first_slide === 'yes') {
+        this.slideItems = slides.splice(0, 1);
+      }
+
+      this.slideItems = slides;
     }
 };
 </script>
@@ -137,65 +150,10 @@ export default {
   }
 }
 
-// .carousel {
-//     &__slides {
-//         img {
-//             width: 100%;
-//             height: auto;
-//         }
-//     }
-
-//     .tns-inner {
-//         transition: left 0.2s;
-//         position: relative;
-//         left: 0;
-//         top: 0;
-//         display: block;
-//     }
-
-//     &.next .tns-inner {
-//         left: -50px;
-//     }
-
-//     &.prev .tns-inner {
-//         left: 50px;
-//     }
-
-//     &__nav {
-//         position: absolute;
-//         top: 0;
-//         left: 0;
-//         right: 0;
-// 		bottom: 0;
-// 		display: none;
-
-// 		  @media (min-width: 1200px) {
-// 			  display: block;
-// 		  }
-//     }
-
-//     &__nav-prev {
-//         position: absolute;
-//         top: 0;
-//         left: 0;
-//         width: 50%;
-//         height: 100%;
-
-//         &.full {
-//             width: 100%;
-//         }
-//     }
-
-//     &__nav-next {
-//         position: absolute;
-//         top: 0;
-//         right: 0;
-//         width: 50%;
-//         height: 100%;
-
-//         &.full {
-//             width: 100%;
-//         }
-//     }
-// }
+// hide first slide on small devices if option is set.
+  // @media (max-width: 920px) {
+  //   .tns-slide-active {
+  //     display: none!important;
+  //   }
+  // }
 </style>
