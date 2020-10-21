@@ -70,7 +70,8 @@ export default {
     '@nuxtjs/dotenv',
     //'@nuxtjs/pwa',
     '@nuxtjs/sitemap',
-    '@nuxtjs/svg'
+    '@nuxtjs/svg',
+    '@nuxtjs/device'
   ],
 
   env: {
