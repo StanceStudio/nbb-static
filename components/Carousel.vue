@@ -9,7 +9,7 @@
           slideBy="1"
           gutter="0"
           :mouse-drag="true"
-          :loop="true"
+          :loop="section.loop === 'yes' ? true : false"
           :controls="true"
           :nav="false"
           :preventScrollOnTouch="'auto'"
@@ -142,11 +142,11 @@ export default {
       background-image: url(../assets/svg/ArrowRight.svg);
     }
 
-    button[data-controls="prev"]:hover {
+    button[data-controls="prev"]:not([disabled]):hover {
       cursor: url(../assets/svg/ArrowLeft.svg), auto;
     }
 
-    button[data-controls="next"]:hover {
+    button[data-controls="next"]:not([disabled]):hover {
       cursor: url(../assets/svg/ArrowRight.svg), auto;
     }
   }
