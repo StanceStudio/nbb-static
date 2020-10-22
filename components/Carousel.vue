@@ -6,6 +6,7 @@
         <vue-tiny-slider
           ref="tinySlider"
           items="1"
+          slideBy="1"
           gutter="0"
           :mouse-drag="true"
           :loop="true"
@@ -56,6 +57,7 @@ export default {
       responsiveSettings: {
         920: {
           items: this.section.gallery_items,
+          slideBy: this.section.gallery_items,
           gutter: 20,
         }
       }
