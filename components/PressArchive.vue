@@ -177,10 +177,14 @@ export default {
     },
 
     projectMouseOver(project) {
-      console.log(project);
+      //console.log(project);
       this.link = project.link ? project.link : '';
+      if (project._embedded) {
       const featuredImage = project._embedded['wp:featuredmedia'];
-      this.showImage(featuredImage[0].media_details.sizes['stance-400'].source_url);
+        if (featuredImage[0]) {
+          this.showImage(featuredImage[0].media_details.sizes['stance-400'].source_url);
+        }
+      }
     },
   }
 };
