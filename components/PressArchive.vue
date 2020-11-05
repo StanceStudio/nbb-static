@@ -179,10 +179,20 @@ export default {
     projectMouseOver(project) {
       //console.log(project);
       this.link = project.link ? project.link : '';
+
       if (project._embedded) {
       const featuredImage = project._embedded['wp:featuredmedia'];
         if (featuredImage[0]) {
-          this.showImage(featuredImage[0].media_details.sizes['stance-400'].source_url);
+          let url;
+          const featuredImageSizes = featuredImage[0].media_details.sizes;
+          if (featuredImageSizes.full) {
+              url = featuredImageSizes.full.source_url;
+          } else if (featuredImageSizes['stance-200']) {
+            url = featuredImageSizes['stance-200'].source_url;
+          } else if (featuredImageSizes['stance-400']) {
+            url = featuredImageSizes['stance-400'].source_url;
+          }
+          this.showImage(url);
         }
       }
     },
