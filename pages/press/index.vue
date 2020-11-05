@@ -15,7 +15,6 @@ export default {
     const { data } = await app.$axios.get(
       `${process.env.wpAPI}/wp/v2/press?orderby=date&per_page=100&_embed`
     );
-    console.log(data);
     return { press: data };
   },
 
