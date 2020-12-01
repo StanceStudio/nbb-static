@@ -1,6 +1,6 @@
 <template>
     <div
-        class="video"
+        class="video overflow-hidden"
         :class="{ 'video--playing' : cursorText ==='Pause' }"
         @mousemove="moveImages"
         @mouseleave="hideImages"
@@ -41,6 +41,14 @@
             <div>
                 <span class="block font-serif uppercase text-2xl text-pink">Play</span>
                 <span class="block font-serif uppercase text-2xl text-pink">Pause</span>
+            </div>
+        </div>
+        <div
+            class="video__play flex xl:hidden absolute z-50 pointer-events-none items-center overflow-hidden"
+            v-if="cursorText ==='Play'">
+            <img src="../assets/img/Play.png" class="w-6 mr-2"> 
+            <div>
+                <span class="block font-serif uppercase text-xl text-pink">Play</span>
             </div>
         </div>
     </div>
@@ -120,7 +128,9 @@ export default {
 <style>
 /* video */
 .video {
-    overflow: hidden;
+    @media (max-width: 1280px) {
+        position: relative;
+    }
 }
 
 .video .plyr__poster {
@@ -136,6 +146,12 @@ export default {
     opacity: 0;
     visibility: hidden;
     transition: visibility .1s, opacity .1s;
+}
+
+.video__play {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .video__cursor > div {
