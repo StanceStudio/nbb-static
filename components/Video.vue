@@ -19,7 +19,6 @@
             ref="plyr"
             v-if="section.video_type === 'local'">
             <video
-                
                 playsinline
                 :data-poster="section.video_placeholder.url">
                 <source
@@ -48,8 +47,6 @@
 </template>
 
 <script>
-import 'vue-plyr/dist/vue-plyr.css'
-
 import { TweenMax } from "gsap";
 
 export default {
