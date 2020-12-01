@@ -57,6 +57,7 @@ export default {
     { src: '~/plugins/vue-lazyload', ssr: false },
     { src: '~/plugins/vue-scrollto', ssr: false },
     { src: '~/plugins/tiny-slider.js', mode: 'client' },
+    { src: '~/plugins/plyr.js', mode: 'client' },
     { src: '~/plugins/mixins' },
     { src: '~/plugins/axios' },
     { src: '~/plugins/bus' },

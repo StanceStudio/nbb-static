@@ -146,6 +146,8 @@
         </div>
       </div>
 
+      <Video v-if="'video' === section.acf_fc_layout" :section="section" />
+
       <Simplicity v-if="'simplicity' === section.acf_fc_layout" :section="section" />
 
       <Carousel v-if="'gallery' === section.acf_fc_layout" :section="section" />
@@ -160,6 +162,7 @@
 
 <script>
 import Simplicity from '~/components/Simplicity.vue';
+import Video from '~/components/Video.vue';
 import FeaturedProject from '~/components/FeaturedProject.vue';
 import Carousel from '~/components/Carousel.vue';
 import ImageList from '~/components/ImageList.vue';
@@ -173,6 +176,7 @@ export default {
     PinkDiamond,
     Underline,
     Simplicity,
+    Video,
     FeaturedProject,
     Carousel,
     ImageList
@@ -186,6 +190,10 @@ export default {
   mixins: {
     filterPostContent: Function
   },
+
+  mounted() {
+    console.log(this.content);
+  }
 };
 </script>
 
