@@ -56,6 +56,17 @@ export default {
       section: Object
     },
 
+    head() {
+      return {
+        link: [
+          {
+            rel: 'stylesheet',
+            href: 'https://unpkg.com/vue-plyr/dist/vue-plyr.css'
+          }
+        ]
+      }
+    },
+
     data() {
         return {
             displayCursor: false,
