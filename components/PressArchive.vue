@@ -215,7 +215,7 @@ export default {
   }
 </style>
 <style>
-  /* .title-item {
+  .title-item {
     opacity: 0;
-  } */
+  }
 </style>
