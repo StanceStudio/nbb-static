@@ -214,8 +214,3 @@ export default {
     }
   }
 </style>
-<style>
-  .title-item {
-    opacity: 0;
-  }
-</style>

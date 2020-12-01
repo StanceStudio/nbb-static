@@ -233,6 +233,11 @@ strong, b {
   transform: translateX(-100%);
 } */
 
+.title-item {
+  opacity: 0;
+  transform: translateY(110%);
+}
+
 .underline {
   transition:all .6s cubic-bezier(.13,.74,.5,.97);
   -webkit-clip-path: inset(0 100% 0 0);

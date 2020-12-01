@@ -151,6 +151,8 @@ export default {
         linesClass: "title-item flex"
       });
 
+      TweenMax.set('.title-item', {opacity: 1});
+
       let tl = new TimelineMax();
       tl.staggerTo('.title-item', .6 , { y: 0, delay: .6, ease: "power3.out"}, .1, "+=0", () => _that.pageReady = true );
     }
