@@ -1,6 +1,6 @@
 <template>
     <div
-        class="video overflow-hidden"
+        class="video overflow-hidden xl:w-5/6 xl:m-auto"
         :class="{ 'video--playing' : cursorText ==='Pause' }"
         @mousemove="moveImages"
         @mouseleave="hideImages"
